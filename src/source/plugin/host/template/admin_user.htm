@@ -1,0 +1,47 @@
+{subtemplate common/header}
+<div class="content">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>管理主机 administration ecs</h1>
+			<p class="lead">管理所有主机</p>
+		</div>
+		<div class="pane">
+			<div class="widgetcontent">
+				<table width="100%" class="table table-bordered" cellspacing="2" cellpadding="2">
+					<tr>
+						<td width="18%" bgcolor="#E0E0E0"><div align="center"><b>$lang[apply_date]</b></div></td>
+						<td width="10%" bgcolor="#E0E0E0"><div align="center"><b>$lang[used_days]</b></div></td>
+						<td width="18%" bgcolor="#E0E0E0"><div align="center"><b>$lang[expire_date]</b></div></td>
+						<td width="10%" bgcolor="#E0E0E0"><div align="center"><b>UID</b></div></td>
+						<td width="10%" bgcolor="#E0E0E0"><div align="center"><b>$lang[statues]</b></div></td>
+						<td width="35%" bgcolor="#E0E0E0"><div align="center"><b>$lang[action]</b></div></td>
+					</tr>
+				<!--{if !$check}-->
+					<tr>
+						<td colspan="5"><div align="center">$lang[no_user_found]</div></td>
+					</tr> 	
+				<!--{/if}-->
+				<!--{loop $Data $F}-->
+					<tr>
+						<td width="15%"><div align="center">$F[date_s]</div></td>
+						<td width="10%"><div align="center">$F[date_n] $lang[days]</div></td>
+						<td width="10%"><div align="center">$F[expiredate]</div></td>
+						<td width="10%"><div align="center">$F[uid]</div></td>
+						<td width="10%"><div align="center">$F[status]</div></td>
+						<td width="40%"><div align="center">
+							<a href="plugin.php?id=host:host&panel=admin&type=activeuser&hid=$F[id]&action=show" ><span class="icon-eye-open"></span>$lang[detail]</a> 
+				<!--{if $F[status] == 'inactive'}--><a href="plugin.php?id=host:host&panel=admin&type=user&action=setfail&hid=$F[id]" class="style17"><span class="icon-remove"></span>$lang[refuse]</a> <!--{/if}-->
+				<!--{if $F[status] == 'active'}--><a href="plugin.php?id=host:host&panel=admin&type=user&action=suspend&hid=$F[id]" class ="style18"><span class="icon-eye-close"></span>$lang[suspend]</a> <!--{/if}-->
+				<!--{if $F[status] == 'suspended'}--><a href="plugin.php?id=host:host&panel=admin&type=user&action=unsuspend&hid=$F[id]" class ="style18">$lang[unsuspend]</a> <!--{/if}-->
+				<!--{if $F[status] != 'terminate'}--><a href="plugin.php?id=host:host&panel=admin&type=user&action=delete&hid=$F[id]" class="style20"><span class="icon-trash"></span>$lang[delete_]</a><!--{/if}-->
+							</div>
+						</td> 
+					</tr>	
+				<!--{/loop}--> 															  		
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+{subtemplate common/footer}

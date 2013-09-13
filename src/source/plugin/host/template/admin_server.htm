@@ -1,0 +1,86 @@
+{subtemplate common/header}<p>
+<LINK REL=StyleSheet HREF="style.css" TYPE="text/css" MEDIA=screen>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host" >DzWHM</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host&panel=admin&type=home" >$lang[admin_panel]</a>
+	</div>
+</div>
+<div id="ct" class="ct2 wp cl">
+<div class="mn">
+<ul class="tb cl">
+	<li><a href="plugin.php?id=host:host&panel=admin&type=addserver">$lang[add_server]</a></li>
+	<li><a href="plugin.php?id=host:host&panel=admin&type=server">$lang[config_server]</a></li> 
+</ul>
+	<table width="100%" class="tfm" cellspacing="0" cellpadding="0">
+		<tr>
+            <td width="15%" bgcolor="#E0E0E0"><div align="center"><b>$lang[plan_server]</b></div></td>
+            <td width="15%" bgcolor="#E0E0E0"><div align="center"><b>ID</b></div></td>
+			<td width="25%" bgcolor="#E0E0E0"><div align="center"><b>$lang[action]</b></div></td>
+        </tr>
+<!--{if !$check}-->
+	<tr>
+		<td colspan="3"><div align="center">$lang[add_server_tip]</div¡£</td>
+	</tr> 	
+<!--{/if}-->
+<!--{loop $Data $F}-->	
+		<tr>
+			<td width="15%"><div align="center">$F[server]</div></td>
+            <td width="15%"><div align="center">$F[id]</div></td>
+			<td width="25%"><div align="center"><a href="plugin.php?id=host:host&panel=admin&type=server&action=manage&no=$F[id]">$lang[edit]</a>&nbsp;|&nbsp;<a href="plugin.php?id=host:host&panel=admin&type=server&action=delete&no=$F[id]">$lang[del]</a></div></td>  
+        </tr>
+<!--{/loop}-->						
+</table>
+
+<!--{if  $_GET['action'] =='manage'}-->
+<form method="post" action="plugin.php?id=host:host&panel=admin&type=server&action=change&no=$array5[id]">
+	<table width="80%" class="tfm" cellspacing="0" cellpadding="0">
+        <tr>
+            <td bgcolor="#E0E0E0"><div align="left">$lang[server_name]</div></td>
+            <td bgcolor="#E0E0E0"><div align="center"><b><input name="server" type="text" id="server" value="$array5[server]" size="15" style="font-family: Verdana; font-size: 9pt" class="px"/></b></div></td>
+        </tr>
+        <tr>
+            <td>$lang[ip_address]</td>
+			<td><div align="center"><input name="ip" type="text" id="ip" value="$array5[ip]" size="15" style="font-family: Verdana; font-size: 9pt" class="px"/></div></td>
+        </tr>
+		<tr>
+            <td>$lang[ns_1]</td>
+			<td><div align="center"><input name="ns1" type="text" id="ns1" value="$array5[ns1]" size="15" style="font-family: Verdana; font-size: 9pt" class="px"/></div></td>
+        </tr>
+        <tr>
+            <td>$lang[ns_2]</td>
+			<td><div align="center"><input name="ns2" type="text" id="ns2" value="$array5[ns2]" size="15" style="font-family: Verdana; font-size: 9pt" class="px"/></div></td>
+        </tr>
+        <tr>
+            <td>$lang[control_panel]</td>
+			<td><div align="center"><select name="cp" style="font-family: Verdana; font-size: 9pt ;width: 340px;height:24px;"  class="px">
+										<option value="$array5[cp]" selected="selected">$lang[default_]</option>
+										<option value="DirectAdmin" >DirectAdmin</option>
+										<option value="cPanel" >cPanel</option>
+									</select></div></td>
+        </tr>
+        <tr>
+            <td>$lang[server_location]</td>
+            <td><div align="center"><input name="location" type="text" id="location" value="$array5[location]" size="15" style="font-family: Verdana; font-size: 9pt" class="px"/></div></td>
+        </tr>		  	
+		<tr>
+			<td>$lang[a_s_username]</td>
+			<td> <div align="center"><input type="text" name="userlogin" value="$array5[userlogin]"  size="15" style="font-family: Verdana; font-size: 9pt" class="px"/> </div></td>
+		</tr>
+		<tr>
+			<td>$lang[a_s_password]</td>
+			<td><div align="center"><input type="text" name="passlogin" value="$array5[passlogin]"  size="15" style="font-family: Verdana; font-size: 9pt" class="px"/> </div></td>
+		</tr>
+        <tr>
+            <td colspan="3"><div align="center"><button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button><button type="reset" class="pn vm" name="submit"><em>$lang[reset_]</em></button></div></td>
+        </tr>
+    </table>
+</form>
+<!--{/if}--> 
+</div>
+{template host:admin_sidebar}
+</div>
+</div>
+
+{subtemplate common/footer}

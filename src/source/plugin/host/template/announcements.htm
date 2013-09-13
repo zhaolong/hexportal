@@ -1,0 +1,28 @@
+{subtemplate common/header}
+<div class="pagetitle">
+	<h1>情报中心</h1> <span>FAQ、帮助...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner">
+		<div id="accordion2" class="accordion faq ui-accordion ui-widget ui-helper-reset" role="tablist">
+		<!--{if $check}-->
+		<!--{loop $Data $F}--> 
+			<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-header-active ui-state-active ui-corner-top ui-accordion-icons ui-state-hover" role="tab" id="ui-accordion-accordion2-header-$F['id']" aria-controls="ui-accordion-accordion2-panel-0" aria-selected="true" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span><a href="#" title="发布于 $F[time_s]"><i class="icon-question-sign"></i> $F[title]</a></h3>
+			<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" style="display: block; " id="ui-accordion-accordion2-panel-0" aria-labelledby="ui-accordion-accordion2-header-0" role="tabpanel" aria-expanded="true" aria-hidden="false">
+				<p>
+				$F[content]
+				</p>
+			</div>
+		<!--{/loop}-->
+		<!--{/if}-->
+		</div>
+		<script>
+            jQuery(document).ready(function(){
+				jQuery("#uname").html("$_G['username']");
+				if(location.hash)jQuery("#ui-accordion-accordion2-header-"+(location.hash.replace('#',''))).click();
+			});
+		</script>
+		
+	</div>
+</div>
+{subtemplate common/footer}

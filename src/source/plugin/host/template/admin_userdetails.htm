@@ -1,0 +1,33 @@
+{subtemplate common/header}
+<div class="content">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>管理主机 administration ecs</h1>
+			<p class="lead">管理所有主机</p>
+		</div>
+		<div class="pane">
+			<div class="widgetcontent">
+				<table width="100%" class="tfm" cellspacing="0" cellpadding="0">
+					<tr>
+						<td bgcolor="#F0F0F0"><b>主机编号:</b></td>
+						<td>$array[domain]</td>
+					</tr>
+					<tr>
+						<td width="20%" bgcolor="#F0F0F0"><b>UID:</b></td>
+						<td>$array[uid]</td>
+					</tr>
+					<tr>
+						<td bgcolor="#F0F0F0"><b>$lang[plan_name]:</b></td>
+						<td>$array[plan]</td>
+					</tr>
+					<tr>
+						<td bgcolor="#F0F0F0"><b>$lang[statues]</b></td>
+						<td>$array[status] </td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+{subtemplate common/footer}

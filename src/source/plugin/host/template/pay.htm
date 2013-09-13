@@ -1,0 +1,109 @@
+{subtemplate common/header}
+<style>
+.how{
+display:none;
+}
+.control-group .control-label, .control-group .controls{
+display:inline-block;
+_display:inline;
+_zoom:1;
+}
+.table-payment{
+	width:600px;
+}
+.table-payment thead{
+	display:none;
+}
+.disabled{
+	color:#ccc;
+	color:#555 \9;
+}
+tr td{
+	height:56px;
+}
+</style>
+<div class="content" style="">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>充值 Payment</h1>
+			<p class="lead"></p>
+		</div>
+		<ul class="page-tabs">
+			<li class=""><a href="plugin.php?id=host:host&page=listorder" data-permalink=""><span class="icon icon-summary"></span>消费记录</a></li>
+			<li class="selected"><a href="plugin.php?id=host:host&page=pay" data-permalink=""><span class="icon icon-account"></span>充值</a></li>
+		</ul>
+		<div id="summary" class="pane">
+		
+			<table class="table table-hover table-payment">
+			<thead>
+			<tr>
+				<th width="10%"> </th>
+				<th width="20%"></th>
+			</tr>
+			</thead>
+			<tbody>
+
+			<tr class="how">
+			<td> 需要金额:</td>
+			<td> <span class="need_how">0</span>元<input name="formhash" id="formhash" type="hidden" value="{FORMHASH}" style="display:none;"></td>
+			</tr> 
+
+			<tr>
+			<td> 账户余额:</td>
+			<td> <span>$array[extcredits4]</span>元</td>
+			</tr>
+
+			<tr>
+			<td> 充值金额:</td>
+			<td> <input type="text" value="10" class="addfundamount"> <span class="help-inline">最低支持充值10元</span></td>
+			</tr>
+
+			<tr>
+			<td> 充值方式:</td>
+			<td> <input name="bank_type" id="alipay" type="radio" value="alipay" class="vm" style="margin: 0px;" checked="checked">支付宝(Alipay) <input name="bank_type" id="tenpay" type="radio" value="tenpay" class="vm" style="margin: 0px;" disabled><span class="disabled">财付通(Tenpay)</span></td>
+			</tr> 
+
+			<tr>
+			<td> <a data-placement="top" data-rel="tooltip" href="#" data-original-title="充值" class="btn btn-mini btn-primary btn-pay" rel="tooltip"><span class="iconsweets-piggybank iconsweets-white"></span> 充值</a> <a data-placement="top" data-rel="tooltip" href="plugin.php?id=host:host" data-original-title="充值" class="btn btn-mini btn-cancel" rel="tooltip"><span class="iconsweets-denied"></span> 取消</a> </td>
+			<td> </td>
+			</tr> 
+
+			</tbody>
+			</table>
+
+		</div>
+	</div>
+</div>	
+<script>
+$=jQuery;
+jQuery(document).ready(function(){
+	jQuery('.item.consumptions').addClass('selected');
+	how = 10;
+	if( /^\#\!how\//.test(location.hash) ){
+		how = ((parseInt(location.hash.substr(6)) - $array[extcredits4]) > 10) ? (parseInt(location.hash.substr(6)) - $array[extcredits4]) : 10;
+	}
+	if ( how != 10 ){
+		jQuery('.addfundamount').val( how );
+		jQuery('.how').show();
+		jQuery('.need_how').html( parseInt(location.hash.substr(6)) );
+	}
+	jQuery('.btn-pay').click(function(){
+		var amount=jQuery('.addfundamount').val(),payTye=jQuery('#alipay').val(),forumhash=jQuery('#formhash').val(),postAction="./home.php?mod=spacecp\x26ac=credit\x26op=buy\x26inajax=1",postData="formhash="+forumhash+"&addfundssubmit=true&handlekey=buycredit&bank_type="+payTye+"&addfundamount="+amount+"&cardid=&addfundssubmit_btn=true";
+		if(amount<10||amount>1000000){
+			jAlert('充值金额不被接受','和谐数据');return false;
+		}
+		jQuery.post(postAction,postData,function(d){
+			eval("var x = $"+"(d),cdata = $"+"(x).find('root').text(),url = $"+"(cdata)[0].action;if(url)location.href=url;");
+		});
+		return false;
+	});
+	jQuery("#uname").html("$_G['username']");
+	jQuery("#uniform-alipay span").ready(function(){
+		jQuery(this).addClass("checked");
+		jQuery("#alipay").attr("checked","checked");
+		
+	});
+});
+</script>
+
+{subtemplate common/footer}

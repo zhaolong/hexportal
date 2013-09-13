@@ -1,0 +1,628 @@
+<!--{subtemplate common/header_common}-->
+
+	<meta name="application-name" content="$_G['setting']['bbname']" />
+
+	<meta name="msapplication-tooltip" content="$_G['setting']['bbname']" />
+
+	<!--{if $_G['setting']['portalstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][1]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['portal']) ? 'http://'.$_G['setting']['domain']['app']['portal'] : $_G[siteurl].'portal.php'};icon-uri={$_G[siteurl]}{IMGDIR}/portal.ico" /><!--{/if}-->
+
+	<meta name="msapplication-task" content="name=$_G['setting']['navs'][2]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['forum']) ? 'http://'.$_G['setting']['domain']['app']['forum'] : $_G[siteurl].'forum.php'};icon-uri={$_G[siteurl]}{IMGDIR}/bbs.ico" />
+
+	<!--{if $_G['setting']['groupstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][3]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['group']) ? 'http://'.$_G['setting']['domain']['app']['group'] : $_G[siteurl].'group.php'};icon-uri={$_G[siteurl]}{IMGDIR}/group.ico" /><!--{/if}-->
+
+	<!--{if $_G['setting']['homestatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][4]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['home']) ? 'http://'.$_G['setting']['domain']['app']['home'] : $_G[siteurl].'home.php'};icon-uri={$_G[siteurl]}{IMGDIR}/home.ico" /><!--{/if}-->
+
+	<!--{if $_G['basescript'] == 'forum' && $_G['setting']['archiver']}-->
+
+		<link rel="archives" title="$_G['setting']['bbname']" href="{$_G[siteurl]}archiver/" />
+
+	<!--{/if}-->
+
+	<!--{if defined('CURMODULE') && ($_G['basescript'] == 'forum' || $_G['basescript'] == 'group') && (CURMODULE == 'index' || CURMODULE == 'forumdisplay' || CURMODULE == 'group')}-->$rsshead<!--{/if}-->
+
+	<!--{if $_G['basescript'] == 'forum' || $_G['basescript'] == 'group'}-->
+
+		<!--{if $_G['basescript'] == 'forum' && empty($_G['disabledwidthauto']) && $_G['forum_widthauto']}-->
+
+			<link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_{STYLEID}_widthauto.css?{VERHASH}" />
+
+			<script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
+
+		<!--{/if}-->
+
+		<script type="text/javascript" src="{$_G[setting][jspath]}forum.js?{VERHASH}"></script>
+
+	<!--{elseif $_G['basescript'] == 'home' || $_G['basescript'] == 'userapp'}-->
+
+		<script type="text/javascript" src="{$_G[setting][jspath]}home.js?{VERHASH}"></script>
+
+	<!--{elseif $_G['basescript'] == 'portal'}-->
+
+		<script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+
+	<!--{/if}-->
+
+	<!--{if $_G['basescript'] != 'portal' && $_GET['diy'] == 'yes' && (CURMODULE == 'topic' || $_G['group']['allowdiy']) && !empty($_G['style']['tplfile'])}-->
+
+		<script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+
+	<!--{/if}-->
+
+	<!--{if $_GET['diy'] == 'yes' && (CURMODULE == 'topic' || $_G['group']['allowdiy']) && !empty($_G['style']['tplfile'])}-->
+
+	<link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_{STYLEID}_css_diy.css?{VERHASH}" />
+
+	<!--{/if}-->
+
+</head>
+
+
+
+<body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}" onkeydown="if(event.keyCode==27) return false;">
+
+<div id="append_parent"></div><div id="ajaxwaitid"></div>
+
+	<!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+
+		<!--{template common/header_diy}-->
+
+	<!--{/if}-->
+
+	<!--{if check_diy_perm($topic)}-->
+
+		<!--{block diynav}-->
+
+			<a id="diy-tg" href="javascript:openDiy();" title="{lang open_diy}" class="xi1 xw1" onmousemove="showMenu(this.id)"><img src="{STATICURL}image/diy/panel-toggle.png" alt="DIY" /></a>
+
+			<div id="diy-tg_menu" style="display: none;">
+
+				<ul>
+
+					<li><a href="javascript:saveUserdata('diy_advance_mode', '');openDiy();" class="xi2">{lang header_diy_mode_simple}</a></li>
+
+					<li><a href="javascript:saveUserdata('diy_advance_mode', '1');openDiy();" class="xi2">{lang header_diy_mode_adv}</a></li>
+
+				</ul>
+
+			</div>
+
+		<!--{/block}-->
+
+	<!--{/if}-->
+
+	<!--{if CURMODULE == 'topic' && $topic && empty($topic['useheader']) && check_diy_perm($topic)}-->
+
+		$diynav
+
+	<!--{/if}-->
+
+	<!--{if empty($topic) || $topic['useheader']}-->
+
+		<!--{if $_G['setting']['mobile']['allowmobile'] && (!$_G['setting']['cacheindexlife'] && !$_G['setting']['cachethreadon'] || $_G['uid']) && ($_GET['diy'] != 'yes' || !$_GET['inajax']) && ($_G['mobile'] != '' && $_G['cookie']['mobile'] == '' && $_GET['mobile'] != 'no')}-->
+
+			<div class="xi1 bm bm_c">
+
+			    {lang your_mobile_browser}<a href="{$_G['siteurl']}forum.php?mobile=yes">{lang go_to_mobile}</a> <span class="xg1">|</span> <a href="$_G['setting']['mobile']['nomobileurl']">{lang to_be_continue}</a>
+
+			</div>
+
+		<!--{/if}-->
+
+
+
+		<div id="toptb" class="cl">	
+
+			<!--{hook/global_cpnav_top}-->
+
+
+
+				<!--{eval $mnid = getcurrentnav();}-->
+
+					<h2><!--{if !isset($_G['setting']['navlogos'][$mnid])}--><a href="./" title="$_G['setting']['bbname']">{$_G['style']['boardlogo']}</a><!--{else}-->$_G['setting']['navlogos'][$mnid]<!--{/if}--></h2>
+
+						<div class="z">
+
+					<div id="nv">
+
+				<div class="z"></div>				
+
+					<ul>
+
+						<!--{loop $_G['setting']['navs'] $nav}-->
+
+							<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}--><li {if $mnid == $nav[navid]}class="a" {/if}$nav[nav]></li><!--{/if}-->
+
+						<!--{/loop}-->
+
+						<!--{if $_G['uid']}--><li id="qmenu" onMouseOver="showMenu({'ctrlid':this.id,'ctrlclass':'hover','duration':2})"><a href="javascript:;">导航</a></li><!--{/if}-->
+
+						
+
+					</ul>
+
+				</div></div>
+
+<!--{subtemplate common/pubsearchform}-->
+
+																	
+
+					<div class="eis_um" class="y">
+
+                        	<ul>
+
+                            	<!--{if $_G['uid']}-->
+
+							    <li class="avt"><a href="home.php?mod=space&uid=$_G[uid]"><!--{avatar($_G[uid],small)}--></a></li>
+
+                                <li id="myum" onMouseOver="showMenu({'ctrlid':this.id,'ctrlclass':'hover','duration':2})" class=""><a href="home.php?mod=space&uid=$_G[uid]" target="_blank" title="{lang visit_my_space}">{$_G[member][username]}</a></li>
+
+								<li id="ntum" onMouseOver="showMenu({'ctrlid':this.id,'ctrlclass':'hover','duration':2})" class=""><a href="javascript:;" {if $_G[member][newpm] || $_G[member][newprompt] || $_G['setting']['taskon'] && !empty($_G['cookie']['taskdoing_'.$_G['uid']])} class="new"{/if}>{lang remind}</a></li>
+
+								<!--{hook/global_usernav_extra1}-->
+
+								<!--{eval $upgradecredit = $_G['uid'] && $_G['group']['grouptype'] == 'member' && $_G['group']['groupcreditslower'] != 999999999 ? $_G['group']['groupcreditslower'] - $_G['member']['credits'] : false;}-->
+
+							<li><a href="home.php?mod=spacecp&ac=credit&showcredit=1" id="extcreditmenu"{if !$_G[setting][bbclosed]} onmouseover="delayShow(this, showCreditmenu);" class="showmenu"{/if}>{lang credits}: $_G[member][credits]</a></li>
+
+                                <!--{if check_diy_perm($topic)}-->
+
+                                    <li><a href="javascript:saveUserdata('diy_advance_mode', '');openDiy();" title="{lang open_diy}" class="xi1 xw1">[DIY]</a></li>
+
+                                <!--{/if}-->
+
+								<li><!--{hook/global_usernav_extra2}--></li>
+
+                                <!--{if $_G['uid'] && $_G['adminid'] == 1 && $_G['setting']['cloud_status']}-->
+
+								<li><a href="admin.php?frames=yes&action=cloud&operation=applist" target="_blank">{lang cloudcp}</a></li>
+
+                                <!--{/if}-->
+
+                                <li class="eis_logout"><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">[{lang logout}]</a></li>
+
+                                 
+
+                                
+
+
+
+
+
+					<!--{elseif !empty($_G['cookie']['loginuser'])}-->
+
+                <div class="login_info">
+
+					<a id="loginuser" class="noborder"><!--{echo dhtmlspecialchars($_G['cookie']['loginuser'])}--></a>
+
+					<a href="member.php?mod=logging&action=login" onClick="showWindow('login', this.href)">{lang activation}</a>
+
+					<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+
+				</div>
+
+                <!--{elseif !$_G[connectguest]}-->
+
+                <div class="login_info">
+
+				<a href="connect.php?mod=login&amp;op=init&amp;referer=forum.php&amp;statfrom=login_simple" style="padding-top: 10px;"><img alt="QQ登录" class="vm" src="{IMGDIR}/qq_login.gif"></a>
+
+                	<a href="member.php?mod=logging&action=login"><img alt="登录社区" class="vm" style="padding-top: 12px;" src="{IMGDIR}/login.gif"></a>
+
+                    <a href="member.php?mod={$_G[setting][regname]}"><img alt="加入我们" class="vm" style="padding-top: 12px;" src="{IMGDIR}/register.gif"></a>
+
+					
+
+				</div>
+
+                <!--{else}-->
+
+                <div class="login_info">
+
+<li class="avt"><a href="home.php?mod=space&uid=$_G[uid]"><!--{avatar($_G[uid],small)}--></a></li>
+
+                	<strong class="vwmy qq">{$_G[member][username]}</strong>
+
+					{lang usergroup}: $_G[group][grouptitle]
+
+					<!--{hook/global_usernav_extra1}-->
+
+					<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+
+                </div>
+
+                <!--{/if}-->
+
+			
+
+		</div></div></div>
+
+	<!--{ad/headerbanner/wp a_h}-->
+
+	<!--{ad/subnavbanner/wp a_mu}-->
+
+		<!--{if CURMODULE != 'topic' && $_G['group']['allowdiy'] && !empty($_G['style']['tplfile']) || CURMODULE == 'topic' && !empty($_G['style']['tplfile']) && ($_G['group']['allowaddtopic'] && $topic['uid'] == $_G['uid'] || $_G['group']['allowmanagetopic'])}-->
+
+<!--{/if}-->
+
+
+
+		<!--{if !IS_ROBOT}-->
+
+        	<!--{if $_G['uid']}-->
+
+                
+
+                <div id="ntum_menu" class="v2-hpop" style="display: none;">
+
+                    <ul>
+
+                    <li><a href="home.php?mod=space&do=pm" id="pm_ntc"{if $_G[member][newpm]} class="new"{/if}>{lang pm_center}</a></li>
+
+						<li><a href="home.php?mod=space&do=notice" id="myprompt" {if $_G[member][newprompt]} class="new"{/if}>{lang remind}<!--{if $_G[member][newprompt]}-->($_G[member][newprompt])<!--{/if}--></a><span id="myprompt_check"></span></li>
+
+							<!--{if $_G['setting']['taskon'] && !empty($_G['cookie']['taskdoing_'.$_G['uid']])}--><li><a href="home.php?mod=task&item=doing" class="new">任务中</a></li><!--{/if}-->                            
+
+                    </ul>
+
+                    </div> 
+
+<div id="myum_menu" class="v2-hpop" style="display: none;">
+
+            <ul>
+
+				            <!--{if $_G['group']['allowinvisible']}-->
+
+							<li><span id="loginstatus">
+
+								<a id="loginstatusid" href="member.php?mod=switchstatus" title="{lang login_switch_invisible_mode}" onClick="ajaxget(this.href, 'loginstatus');return false;" class="xi2"></a>
+
+							</span></li>
+
+							<!--{/if}-->
+
+                                <li><a href="home.php?mod=spacecp">{lang setup}</a></li>
+
+                <!--{if ($_G['group']['allowmanagearticle'] || $_G['group']['allowpostarticle'] || $_G['group']['allowdiy'] || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 6) || getstatus($_G['member']['allowadmincp'], 2) || getstatus($_G['member']['allowadmincp'], 3))}-->                
+
+								<li><a href="portal.php?mod=portalcp"><!--{if $_G['setting']['portalstatus'] }-->{lang portal_manage}<!--{else}-->{lang portal_block_manage}<!--{/if}--></a></li>
+
+							<!--{/if}-->
+
+							<!--{if $_G['uid'] && $_G['group']['radminid'] > 1}-->
+
+								<li><a href="forum.php?mod=modcp&fid=$_G[fid]" target="_blank">{lang forum_manager}</a></li>
+
+							<!--{/if}-->
+
+							<!--{if $_G['uid'] && $_G['adminid'] == 1 && $_G['setting']['cloud_status']}-->
+
+								<li><a href="admin.php?frames=yes&action=cloud&operation=applist" target="_blank">{lang cloudcp}</a></li>
+
+							<!--{/if}-->
+
+							<!--{if $_G['uid'] && getstatus($_G['member']['allowadmincp'], 1)}-->
+
+								<li><a href="admin.php" target="_blank">{lang admincp}</a></li>
+
+							<!--{/if}-->
+
+							                          
+
+                         </ul></div>
+
+            <!--{/if}-->
+
+
+
+				
+
+					<!--{if $_G['uid']}-->
+
+					<div id="qmenu_menu" class="p_pop" style="display: none;">
+
+					<ul>
+
+						<!--{loop $_G['setting']['mynavs'] $nav}-->
+
+							<!--{if $nav['available'] && (!$nav['level'] || ($nav['level'] == 1 && $_G['uid']) || ($nav['level'] == 2 && $_G['adminid'] > 0) || ($nav['level'] == 3 && $_G['adminid'] == 1))}-->
+
+{eval $nav[code] = str_replace('style="', '_style="', $nav[code]);}
+
+								<li>$nav[code]</li>
+
+							<!--{/if}-->
+
+						<!--{/loop}-->
+
+					</ul>
+
+					</div>
+
+					<!--{/if}-->
+
+				
+
+		<!--{/if}-->
+
+				
+
+		<div id="hd">
+
+		<div class="v2_hd">
+
+			<div class="wp">
+
+				<div class="hdc cl">
+
+					
+
+					</div>
+
+
+
+				</div>
+
+
+
+				
+
+				<!--{if !empty($_G['setting']['plugins']['jsmenu'])}-->
+
+					<ul class="p_pop h_pop" id="plugin_menu" style="display: none">
+
+					<!--{loop $_G['setting']['plugins']['jsmenu'] $module}-->
+
+						 <!--{if !$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])}-->
+
+						 <li>$module[url]</li>
+
+						 <!--{/if}-->
+
+					<!--{/loop}-->
+
+					</ul>
+
+				<!--{/if}-->
+
+				$_G[setting][menunavs]
+
+				<div id="mu" class="cl">
+
+				<!--{if $_G['setting']['subnavs']}-->
+
+					<!--{loop $_G[setting][subnavs] $navid $subnav}-->
+
+						<!--{if $_G['setting']['navsubhover'] || $mnid == $navid}-->
+
+						<ul class="cl {if $mnid == $navid}current{/if}" id="snav_$navid" style="display:{if $mnid != $navid}none{/if}">
+
+						$subnav
+
+						</ul>
+
+						<!--{/if}-->
+
+					<!--{/loop}-->
+
+				<!--{/if}-->
+
+				</div>			
+
+				
+
+			</div>
+
+			</div>
+
+			
+
+	<!--{if $_G['setting']['search']}-->
+
+	   <ul id="scbar_type_menu" class="v2-smu" style="display: none;"><!--{echo implode('', $slist);}--></ul>
+
+	   <script type="text/javascript">
+
+	   	initSearchmenu('scbar');
+
+		</script>
+
+	<!--{/if}-->
+
+	
+
+
+
+			
+
+		</div>
+
+
+
+		<!--{hook/global_header}-->
+
+	<!--{/if}-->
+
+<div class="v2-ct"></div>
+
+	<div class="v2-wp">	
+
+	<div id="wp" class="wp">
+
+				
+
+<script language="javascript" type="text/javascript">
+
+startColor = "#333333"; // 定义链接颜色
+
+endColor = "#00c2eb";  // 定义要渐变到最后的颜色
+
+stepIn = 17;
+
+stepOut = 23;
+
+/*
+
+定义是否让所有的文本链接自动渐变，true为是，false为否
+
+*/
+
+autoFade = true;
+
+/*
+
+在这里定义css样式里的类class：fade，如果为true，那么你要将要渐变的链接上加上此fade样式
+
+*/
+
+sloppyClass = false;
+
+hexa = new makearray(16);
+
+for(var i = 0; i < 10; i++)
+
+    hexa[i] = i;
+
+hexa[10]="a"; hexa[11]="b"; hexa[12]="c";
+
+hexa[13]="d"; hexa[14]="e"; hexa[15]="f";
+
+document.onmouseover = domouseover;
+
+document.onmouseout = domouseout;
+
+startColor = dehexize(startColor.toLowerCase());
+
+endColor = dehexize(endColor.toLowerCase());
+
+var fadeId = new Array();
+
+function dehexize(Color){
+
+ var colorArr = new makearray(3);
+
+ for (i=1; i<7; i++){
+
+  for (j=0; j<16; j++){
+
+   if (Color.charAt(i) == hexa[j]){
+
+    if (i%2 !=0)
+
+     colorArr[Math.floor((i-1)/2)]=eval(j)*16;
+
+    else
+
+     colorArr[Math.floor((i-1)/2)]+=eval(j);
+
+   }
+
+  }
+
+ }
+
+ return colorArr;
+
+}
+
+function domouseover() {
+
+  if(document.all){
+
+   var srcElement = event.srcElement;
+
+   if ((srcElement.tagName == "A" && autoFade) || srcElement.className == "fade" || (sloppyClass && srcElement.className.indexOf("fade") != -1))
+
+        fade(startColor,endColor,srcElement.uniqueID,stepIn);
+
+   }
+
+}
+
+function domouseout() {
+
+  if (document.all){
+
+   var srcElement = event.srcElement;
+
+    if ((srcElement.tagName == "A" && autoFade) || srcElement.className == "fade" || (sloppyClass && srcElement.className.indexOf("fade") != -1))
+
+        fade(endColor,startColor,srcElement.uniqueID,stepOut);
+
+    }
+
+}
+
+function makearray(n) {
+
+    this.length = n;
+
+    for(var i = 1; i <= n; i++)
+
+        this[i] = 0;
+
+    return this;
+
+}
+
+function hex(i) {
+
+    if (i < 0)
+
+        return "00";
+
+    else if (i > 255)
+
+        return "ff";
+
+    else
+
+       return "" + hexa[Math.floor(i/16)] + hexa[i%16];}
+
+function setColor(r, g, b, element) {
+
+      var hr = hex(r); var hg = hex(g); var hb = hex(b);
+
+      element.style.color = "#"+hr+hg+hb;
+
+}
+
+
+
+function fade(s,e, element,step){
+
+ var sr = s[0]; var sg = s[1]; var sb = s[2];
+
+ var er = e[0]; var eg = e[1]; var eb = e[2];
+
+ if (fadeId[0] != null && fade[0] != element){
+
+  setColor(sr,sg,sb,eval(fadeId[0]));
+
+  var i = 1;
+
+  while(i < fadeId.length){
+
+   clearTimeout(fadeId[i]);
+
+   i++;
+
+   }
+
+  }
+
+    for(var i = 0; i <= step; i++) {
+
+     fadeId[i+1] = setTimeout("setColor(Math.floor(" +sr+ " *(( " +step+ " - " +i+ " )/ " +step+ " ) + " +er+ " * (" +i+ "/" +
+
+   step+ ")),Math.floor(" +sg+ " * (( " +step+ " - " +i+ " )/ " +step+ " ) + " +eg+ " * (" +i+ "/" +step+
+
+   ")),Math.floor(" +sb+ " * ((" +step+ "-" +i+ ")/" +step+ ") + " +eb+ " * (" +i+ "/" +step+ ")),"+element+");",i*step);
+
+  }
+
+ fadeId[0] = element;
+
+}
+
+</script>
+

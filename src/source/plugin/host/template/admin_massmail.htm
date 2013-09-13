@@ -1,0 +1,56 @@
+{subtemplate common/header}<p>
+<style type="text/css">
+.ct2_a .mn {width:770px;}
+.tl {padding:4px 8px;}
+.style13 {color: #FFFFFF}
+.tl table {width:100%;table-layout:auto;}
+.tl input {height:20px;}
+.tl td {padding:8px 12px;}
+.appl {width:155px;margin:8px 0;}
+.pm {height:25px;overflow:hidden;width:80px;}
+.tl td p{padding:2px}
+.style2 {color: #999999}
+.style12 {color: #FFD306}
+.style13 {color: #FFFFFF}
+.style14 {color: #333333}
+.style15 {color: #FFFFFF; font-weight: bold; }
+.style16 {color: #00BB00}
+.style17 {color: #00DB00}
+.style18 {color: #2894FF}
+.style20 {color: #FF0000}
+.style28 {color: #2828FF; font-weight: bold; }
+</style>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host" >DzWHM</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host&panel=admin&type=home" >$lang[admin_panel]</a>
+	</div>
+</div>
+<div id="ct" class="ct2 wp cl">
+<div class="mn">
+<form method="POST" action="">
+	<table width="100%" class="tfm" cellspacing="0" cellpadding="0" >
+		<tr>
+			<h2><div class="bm_h cl"><span style="float:left">$lang[mass_mail]</span></div></h2>
+		</tr>
+		<tr>
+			<td>$lang[title]</td>
+			<td><input type="text"name="subject" style="font-family: Verdana; font-size: 9pt" class="px" size="15" ></td>
+		</tr>
+		<tr>
+			<td>$lang[content]</td>
+			<td><textarea name="content" cols="80" rows="8" style="font-family: Verdana; font-size: 9pt" class="pt"></textarea></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+            <td><button type="submit" class="pn vm" name="submit"><em>$lang[mail_send]</em></button></td>
+		</tr>
+    </table>
+</form>
+</div>
+{template host:admin_sidebar}
+</div>
+</div>
+
+{subtemplate common/footer}

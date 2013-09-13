@@ -1,0 +1,3 @@
+#head{background:#000 url(head.gif) repeat-x 0 0;}
+#nv_b{background: url(head.gif) no-repeat 0 -80px; padding-left:2px}
+#nv_b li {background: url(head.gif) no-repeat 100% -80px;}

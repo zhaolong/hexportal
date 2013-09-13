@@ -1,0 +1,242 @@
+{subtemplate common/header}
+		<div class="content" style="">
+			<div class="wrapper">
+				<div class="page-intro">
+					<h1>消费记录 consumptions</h1>
+					<p class="lead">
+					</p>
+				</div>
+				<ul class="page-tabs">
+					<li class="selected"><a href="plugin.php?id=host:host&page=listorder" data-permalink=""><span class="icon icon-summary"></span>消费记录</a></li>
+					<li class=""><a href="plugin.php?id=host:host&page=pay" data-permalink=""><span class="icon icon-account"></span>充值</a></li>
+				</ul>
+				<div id="summary" class="pane">
+					<div class="charge-summary">
+						<h1>总消费额:&nbsp;&nbsp;<span class="total_sum price">0.1361</span><span class="unit">元</span><small><a href="profile" target="_blank">查看帐户余额</a></small></h1>
+						<a class="summary-item selected"><span class="count">全部&nbsp;(4)</span><span class="sum price">0.133<span class="unit">元</span></span></a>
+						<a class="summary-item"><span class="count">新购&nbsp;(0)</span><span class="sum price">0<span class="unit">元</span></span></a>
+						<a class="summary-item"><span class="count">续费&nbsp;(0)</span><span class="sum price">0<span class="unit">元</span></span></a>
+					</div>
+					<div class="charge-resources">
+						<div class="charge-resources-table">
+							<div class="page">
+								<div class="pagination">
+								</div>
+							</div>
+							<table class="table table-bordered table-hover">
+							<thead>
+							<tr>
+								<th>
+									ID
+								</th>
+								<th>
+									状态
+								</th>
+								<th class="right">
+									金额(元)
+								</th>
+								<th class="right">
+									配置
+								</th>
+								<th>
+									创建时间
+								</th>
+								<th>
+								</th>
+							</tr>
+							</thead>
+							<tbody>
+
+					<!--{eval $flag_tmp=1;}-->
+					<!--{loop $array $one}-->
+							<tr>
+								<td>
+									<a class="detail" id="detail{$one['order_id']}" href="#view/id/{$one['order_id']}" data-need-pay="<!--{echo number_format($one['need_pay'],2);}-->" data-this-id="{$one['order_id']}" data-detail="<!--{eval if($one['type'] == 1)echo " 新购";else if($one['type'] == 2)echo " 续费";}--><!--{eval $data_tmp = json_decode($one['json'],true);echo $data_tmp['cpu']."核/".$data_tmp['mem']."MB/".$data_tmp['bandwidth']."Mbps/".$data_tmp['storage']."GB×".$data_tmp['during'];echo $data_tmp['term']=="yr"?"年":"月";}-->" data-is-paid="{$one['paid']}">{$one['order_id']}</a>
+								</td>
+								<td id="statue{$one['order_id']}"><!--{if $one['paid'] == 0}--><span class="icon-question-sign"></span> 未支付<!--{elseif $one['paid'] == -1}--><span class="icon-remove-sign"></span> 已作废<!--{else}--><span class="icon-ok-sign"></span> 已支付<!--{/if}--></td>
+								<td class="right"><!--{echo number_format($one['need_pay'],2);}-->元</td>
+								<td class="right"><!--{eval if($one['type'] == 1)echo "<span class=\"iconfa-play\"></span> 新购";else if($one['type'] == 2)echo "<span class=\"iconfa-forward\"></span> 续费";}--><!--{eval $data_tmp = json_decode($one['json'],true);echo $data_tmp['cpu']."核/".$data_tmp['mem']."MB/".$data_tmp['bandwidth']."Mbps/".$data_tmp['storage']."GB×".$data_tmp['during'];echo $data_tmp['term']=="yr"?"年":"月";}--></span>
+								</td>
+								<td class="time">
+									<!--{eval echo date('Y/m/d',strtotime($one['order_time']));}-->
+								</td>
+								<td>
+									<a href="#view/id/{$one['order_id']}" class="link-order-detail" data-this-id="{$one['order_id']}">查看详情</a><!--{if $one['paid'] == 0}--> <a href="#" class="link-pay" data-this-id="{$one['order_id']}" data-need-pay="$one['need_pay']">支付</a>  <a href="#" class="link-cancel" data-this-id="{$one['order_id']}">作废</a><!--{/if}-->
+								</td>
+							</tr>
+							
+					<!--{eval $flag_tmp++;}-->
+					<!--{/loop}-->
+                    </tbody>
+			</table>
+			<!--{if $array_count[0]['total'] > 20 }-->
+				<div class="btn-group">
+					{$nav_str}
+				</div>
+			<!--{/if}-->
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="notify" style="">
+		</div>
+
+
+		<div class="window-overlay" style="display:none">
+			<div class="modal" style="width: 800px; height: auto; margin-left: -400px; margin-top: -200px; top: 50%;">
+				<div class="modal-header">
+					<h4>查看消费详情<span class="title-id"> # 加载中</span><a href="#" class="close"><span class="icon-close icon-Large"></span></a></h4>
+				</div>
+				<div class="modal-content" id="charge-records">
+					<div class="table-inner">
+						<div class="title">
+							<h4>总计：<span class="this-price">0.06</span><span class="unit">元</span></h4>
+						</div>
+						<div class="page">
+							<div class="pagination">
+							</div>
+						</div>
+						<table class="table table-bordered">
+						<thead>
+						<tr>
+							<th>
+								配置
+							</th>
+							<th class="right">
+								金额(元)
+							</th>
+							<th class="right">
+								订单状态
+							</th>
+							<th width="30%">
+								操作
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="conf">
+								加载中...<br/>
+								.
+							</td>
+							<td class="right">
+								<span class="price out">– 0.00</span>
+							</td>
+							<td class="right">
+								<span class="ispaid">未支付</span>
+							</td>
+							<td class="time">
+								<a href="#" class="now-pay">支付</a> <a href="#" class="now-drop">作废</a>
+							</td>
+						</tr>
+						</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+		
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery('.item.consumptions').addClass('selected');
+		jQuery('a.detail').click(function(){
+			jQuery('.this-price').html(jQuery(this).attr('data-need-pay'));
+			jQuery('.price.out').html("- "+jQuery(this).attr('data-need-pay'));
+			jQuery('.title-id').html(" #"+jQuery(this).attr('data-this-id'));
+			jQuery('.conf').html(jQuery(this).attr('data-detail'));
+			jQuery(this).attr('data-is-paid')=="1"?(jQuery('.ispaid').html("已支付"),jQuery('a.now-pay').hide(),jQuery('a.now-drop').hide()):(jQuery(this).attr('data-is-paid')=="-1"?(jQuery('.ispaid').html("已作废"),jQuery('a.now-pay').hide(),jQuery('a.now-drop').hide()):(jQuery('.ispaid').html("未支付"),jQuery('a.now-pay').show(),jQuery('a.now-drop').show()));
+			jQuery('a.now-pay,a.now-drop').attr('data-this-id',jQuery(this).attr('data-this-id'));
+			jQuery('div.window-overlay').show();
+			
+			jQuery('a.now-drop').unbind('click').click(function(){
+				var oid = jQuery(this).attr('data-this-id');
+				jQuery('.link-cancel[data-this-id="'+oid+'"]').click();
+				//jQuery('.icon-close').click();
+				return false;
+			});
+
+			jQuery('a.now-pay').unbind('click').click(function(){
+				var oid = jQuery(this).attr('data-this-id');
+				jQuery('.link-pay[data-this-id="'+oid+'"]').click();
+				//jQuery('.icon-close').click();
+				return false;
+			});
+
+			//return false;
+		});
+		jQuery('.icon-close').click(function(){
+			jQuery('div.window-overlay').not('#popup_overlay').hide();
+			location.hash="#";
+			//return false;
+		});
+		jQuery("#uname").html("$_G['username']");
+		jQuery('.order-filter').click(function(){
+			jQuery('input[aria-controls="listorder"]').val(jQuery(this).html()=="全部"?"":jQuery(this).html()).keyup();
+			jQuery('.mediamgr_category ul li').removeClass('current');
+			jQuery(this).parent().addClass('current');
+			return false;
+		});
+		jQuery('.link-cancel').click(function(){
+			var thisA = jQuery( this );
+			var oid = thisA.attr('data-this-id');
+			console.log(oid);
+			jConfirm('是否要作废此订单?作废后此订单将无法支付.','hexPanel',function(callback){
+				if(callback)jQuery.post('plugin.php?id=host:host\x26page=save','action=cancel\x26token={FORMHASH}\x26order_id='+oid,function(data){
+					if(data == "1"){
+						thisA.remove();
+						jQuery('.link-pay[data-this-id="'+oid+'"]').remove();
+						jQuery( '#statue' + oid ).html( '<span class="iconfa-remove-sign"></span>已作废' );
+						jQuery('a.detail[data-this-id="'+oid+'"]').attr('data-is-paid','-1');
+						if(jQuery('.window-overlay:visible').not('#popup_overlay').length > 0)jQuery('a.detail[data-this-id="'+oid+'"]').click();
+						jAlert('此订单已作废~');
+					}else{
+						jAlert('未知错误..');
+					}
+				});
+			});
+			return false;
+		});
+		jQuery('.link-pay').click(function(){
+			var thisA = jQuery( this );
+			var oid = thisA.attr('data-this-id');
+			jConfirm('确认要支付？确认后款项将直接从您账户余额中扣除','hexPanel',function(callback){
+				if(callback)jQuery.post('plugin.php?id=host:host\x26page=payorder','_csrf_token={FORMHASH}\x26order_id='+oid,function(data){
+					//console.log(data);
+					if(data == "1"){
+						thisA.remove();
+						jQuery('.link-cancel[data-this-id="'+oid+'"]').remove();
+						jQuery( '#statue' + oid ).html( '<span class="iconfa-remove-sign"></span>已支付' );
+						jQuery('a.detail[data-this-id="'+oid+'"]').attr('data-is-paid','1');
+						if(jQuery('.window-overlay:visible').not('#popup_overlay').length > 0)jQuery('a.detail[data-this-id="'+oid+'"]').click();
+						jAlert('支付成功！');
+					}else if(data == "-3"){
+						jConfirm('支付失败！余额不足啦！是否需要去充值?','hexPanel',function(callback){
+							if(callback){
+								location.href="plugin.php?id=host:host\x26page=pay#!how/"+thisA.attr('data-need-pay');
+							}
+						});
+					}else if(data == "-999"){
+						jAlert('支付失败！TOKEN校验失败啦！');
+					}else{
+						jAlert('支付失败！未知错误！');
+					}
+				});
+			});
+			return false;
+		});
+		jQuery('.link-order-detail').click(function(){
+			jQuery('#detail'+jQuery(this).attr('data-this-id')).click();
+		});
+		if((new RegExp(/\#view\/id\/(20[0-9]{17})/)).exec(location.hash).length>1){
+			var order_id = (new RegExp(/\#view\/id\/(20[0-9]{17})/)).exec(location.hash)[1];
+			jQuery('#detail'+order_id).click();
+		}
+	});
+</script>
+
+{subtemplate common/footer}

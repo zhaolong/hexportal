@@ -1,0 +1,173 @@
+{subtemplate common/header}
+		<div class="content" style="">
+			<div id="ticket" class="wrapper permalink">
+				<div>
+					<div class="breadcrumbs">
+						<a class="level0 " href="plugin.php?id=host:host&page=tickets" data-permalink="">工单</a><a class="level1 nav-lev1" href="plugin.php?id=host:host&page=tickets" data-permalink="">加载中</a><a class="level2 id" href="#" data-permalink="">加载中...</a>
+					</div>
+					<div class="ticket-details pane">
+						<h3 class="ticket-summary tk-title" id="" data-loaded="0">加载中<br>
+						<small class="time tk-title">加载中</small></h3>
+						<div class="ticket-desc tk-title">
+							<p>
+								加载中
+							</p>
+						</div>
+					</div>
+					<div class="replies-list pane">
+						<h4>所有回复</h4>
+						<div class="page">
+							<div class="pagination">
+							</div>
+						</div>
+						<div class="replies">
+						</div>
+						<div class="add-reply">
+							<form class="form add-reply">
+								<div class="reply-item">
+									<div class="owner">
+										<a class="avatar" href="#" style="background-image: url('images/icons/user.png')"></a>
+									</div>
+									<div class="reply-content">
+										<textarea name="content" rows="6"></textarea>
+										<div>
+											<a class="btn btn-primary btn-reply" href="#"><span class="icon-reply"></span>&nbsp; 回复</a>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<script>
+/*
+Todo: Gravatar Api Mirror
+*/
+var uniq_id,tk_id=parseInt(location.hash.substr(10)).toString(),formhash="{FORMHASH}",xnot=0,st,xt,stt,recvMsg;
+jQuery(document).ready(function(){
+	jQuery(".level2.id").html('#hex-tk' + tk_id.toString()).click(function(){
+		return false;
+	});
+
+	recvMsg = function(name,msg,time,id,type,alerti,title,status){
+		if(typeof(title)=="undefined")title="";
+		window.setTimeout(
+				function() {
+					if(jQuery('.ticket-summary.tk-title').attr('data-loaded')=="0"){
+						jQuery('.ticket-summary.tk-title').html(title.replace(/\</g,'&lt;').replace(/\>/g,'&gt;').replace(/\r\n/g,'<br/>')).attr('data-loaded','1').attr('id',id.toString());
+						jQuery('.time.tk-title').html(time);
+						jQuery('.ticket-desc.tk-title').html(msg.replace(/\</g,'&lt;').replace(/\>/g,'&gt;').replace(/\r\n/g,'<br/>'));
+						uniq_id = id;
+						if(status == "\u5df2\u5173\u95ed"){
+							//已关闭
+							jQuery('.nav-lev1').html('已关闭').attr('href','plugin.php?id=host:host&page=tickets&type=closed');
+							setTimeout(function(){
+								jQuery('textarea[name="content"]').attr('disabled','disabled');
+								jQuery('textarea[name="content"]').attr('readonly','readonly');
+								jQuery('textarea[name="content"]').html('工单已关闭,不能回复');
+								jQuery('.btn-reply').removeClass('btn-primary').addClass('btn-forbidden');
+							},1000);
+						}else{
+							//处理中
+							jQuery('.nav-lev1 ').html('处理中').attr('href','plugin.php?id=host:host&page=tickets');						
+						}
+					}else{
+						console.log(type);
+						jQuery('.replies').append(''
+							+'<div class="reply-item '+type+'" id="'+id.toString()+'">'
+							+'<div class="owner">'
+							+'<a class="avatar" href="#" onclick="return false;" style="background-image: url(\''+(type=="csreply"?'images/icons/moder.png':'images/icons/user.png')+'\')"></a>'
+							+'</div>'
+							+'<div class="reply-content">'
+							+'<p>'
+							+''+msg.replace(/\</g,'&lt;').replace(/\>/g,'&gt;').replace(/\r\n/g,'<br/>')+'.'
+							+'</p>'
+							+'<span class="time"><span style="'+(type=="csreply"?'':'color:#000')+'">'+name+'</span>: '+time+'</span>'
+							+'</div>'
+							+'</div>'
+						+'');
+						if(id > uniq_id)uniq_id = id;
+					}
+
+					//if(alerti)jQuery.jGrowl('您收到一条新消息', { life: 5000 });
+					if(stt)clearTimeout(stt); //修复重复滚动的BUG
+					stt=window.setTimeout(function(){
+						jQuery('#chatmessage').animate({scrollTop:jQuery('#chatmessageinner').height()});
+					},500);
+					jQuery('textarea[name="content"]').removeAttr('readonly').removeAttr('disabled');
+				}, 100);
+	};
+
+	replyMessage = function() {
+		var msg = jQuery('textarea[name="content"]').val(); //get the value of message box
+		//display message from a message box
+		if(msg != '') {
+			var postAction="plugin.php?id=host:host\x26page=ticketapi\x26action=reply\x26ticketid="+tk_id+"\x26formhash="+formhash; // & 需要转义
+			var postData="action=reply";
+			//var postData="action=reply";
+			postData+=("&data="+msg);
+			jQuery.post(postAction,postData,function(r){
+				eval('r='+r);
+				if(r.code=="failed"){
+					//失败
+					jAlert('发送失败<br/>服务器返回消息:"'+r.msg+'"','和谐数据');
+				}else if(r.data){
+					recvMsg(r.data.user,r.data.content,r.data.time,r.data.id,r.data.ttype,r.data.title);
+					jQuery('textarea[name="content"]').val('').focus();
+					//jQuery('#chatmessage').animate({scrollTop:jQuery('#chatmessageinner').height()});									
+				}
+			});
+
+		}	
+	};
+	loadMsgs = function(uniq_id){
+		//var uniq_id="";//这是每次发送、回复消息的唯一ID，机制有点类似http 206分段传输
+		//服务器在获取这个唯一ID后，对比数据库中在这ID之后的归属这个工单的消息，然后将ID大于这个唯一ID的后续消息输出到HTML AJAX展示
+		var stamp = (new Date).getTime()%3600;
+		if(uniq_id>0){
+			var getAction="plugin.php?id=host:host\x26page=ticketapi\x26action=fresh\x26ticketid="+tk_id+"\x26uniqid="+uniq_id+"&formhash=$forumhash&stamp="+stamp;
+		}else{
+			var getAction="plugin.php?id=host:host\x26page=ticketapi\x26action=fresh\x26ticketid="+tk_id+"&formhash=$forumhash&stamp="+stamp;
+		}
+		jQuery.get(getAction,function(r){
+			eval('r='+r);
+			try{
+				if(typeof(r.data)!='undefined')for(i=0;i<r.data.length;i++){
+					var d=r.data[i];
+					if(d.status=="\u5df2\u5173\u95ed"){
+						jQuery('input,textarea').attr('disabled','disabled').attr('readonly','readonly');
+						//jQuery('a.btn.btn-primary.btn-reply').attr('class','btn btn-reply btn-forbidden');
+						//if(!xt)jQuery.jGrowl('此工单已关闭，不再接受新回复，您只能看看，您不能说话。', { life: 5000 });
+						xt=1;
+					}
+					if(!jQuery('#'+d.id).length)recvMsg(d.user,d.content,d.time,d.id,d.ttype,(uniq_id?true:false),d.title,d.status);
+				}else if(r.code=="failed"){
+					alert('加载工单失败,请确认您对此工单拥有访问权限.\r\n伺服器返回信息：'+r.msg);
+					jQuery('input,textarea').attr('disabled','disabled').attr('readonly','readonly');
+					//jQuery('a.btn.btn-primary.btn-reply').attr('class','btn btn-reply btn-forbidden');
+				}
+			}catch(e){}
+		});
+	};
+	jQuery('.btn.btn-primary.btn-reply').click(function(){
+		replyMessage();
+		return false;
+	});
+	jQuery('textarea[name="content"]').keypress(function(e){
+		if(e.which == 10)replyMessage();
+	})/*.autogrow()*/;
+	loadMsgs();
+	setTimeout(function(){
+		st=setInterval(function(){
+			loadMsgs(jQuery('.reply-item[id]:last').attr('id'));
+			xnot=1;
+		},3000);
+	},5000);
+	jQuery(".item.tickets").addClass('selected');
+});
+
+</script>        
+{subtemplate common/footer}

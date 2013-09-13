@@ -1,0 +1,92 @@
+{subtemplate common/header}
+<style>
+.stdform label{
+width:100px;
+}
+.stdform span.field, .stdform div.field {
+margin-left: 130px;
+}
+</style>
+<div class="content">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>管理工单 administration ticket</h1>
+			<p class="lead">管理工单 # $ticketid</p>
+		</div>
+		<div class="pane">
+			<h2>工单编号: # $ticketid <span>$array11[title]</span> <a href="plugin.php?id=host:host&panel=admin&type=tickets">返回</a></h2>
+			
+				<table class="table">
+					<colgroup>
+						<col class="con0">
+						<col class="con1">
+						<col class="con0">
+						<col class="con1">
+						<col class="con0">
+					</colgroup>
+					<thead>
+						<tr>
+							<th><b>工单标题</b></th>
+							<th><b>$lang[date_]</b></th>
+							<th><b>$lang[username]</b></th>
+							<th><b>$lang[statues]</b></th>
+							<th><b>$lang[urgency]</b></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>$array11[title]</td>
+							<td>$array11[time_s]</td>
+							<td>$array11[user]</td>
+							<td>$array11[status]</td>
+							<td>$array11[urgency]</td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table">
+					<colgroup>
+						<col class="con0">
+						<col class="con1">
+						<col class="con0">
+					</colgroup>
+					<thead>
+						<tr>
+							<th><b>回复人</b></th>
+							<th><b>回复日期</b></th>
+							<th><b>回复内容</b></th>
+						</tr>
+					</thead>
+					<tbody>
+					<!--{loop $Data $F}--> 
+						<tr>
+							<td>$F[user]</td>
+							<td>$F[time_s]</td>
+							<td>$F[content]</td>
+						</tr>
+						<!--{/loop}-->
+					</tbody>
+				</table>
+				<h4 class="widgettitle">回复工单</h4>
+				<div class="widgetcontent">
+					<form id="form3" name="form3" method="post" action='' class="stdform">
+						<p>
+							<label>回复内容</label>
+							<span class="field"><textarea id="content" name="content" class="input-block-level" style="resize: none; height: 100px;width: 500px; "></textarea></span> 
+						</p>
+						<p>
+							<label></label>
+							<span class="field"><button type="submit" class="btn btn-primary" name="submit">$lang[reply]</button></span> 
+						</p>
+					</form>		
+				</div>
+			</div>
+	</div>
+</div>
+<script>
+
+jQuery(document).ready(function(){
+	jQuery("#uname").html("$_G['username']");
+	jQuery('#content').autogrow();
+});
+</script>
+{subtemplate common/footer}

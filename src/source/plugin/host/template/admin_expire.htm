@@ -1,0 +1,45 @@
+{subtemplate common/header}<p>
+<style type="text/css">
+.ct2_a .mn {width:770px;}
+.tl {padding:4px 8px;}
+.style13 {color: #FFFFFF}
+.tl table {width:100%;table-layout:auto;}
+.tl input {height:20px;}
+.tl td {padding:8px 12px;}
+.appl {width:155px;margin:8px 0;}
+.pm {height:25px;overflow:hidden;width:80px;}
+.tl td p{padding:2px}
+.style2 {color: #999999}
+.style13 {color: #FFFFFF}
+.style14 {color: #333333}
+.style15 {color: #FFFFFF; font-weight: bold; }
+.style16 {color: #00BB00; font-weight: bold; }
+.style28 {color: #2828FF}
+</style>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host" >DzWHM</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host&panel=admin&type=home" >$lang[admin_panel]</a>
+	</div>
+</div>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+<div class="bm">
+    <div class="bm_h cl">
+		<h2>$lang[edit_expire_to]</h2>
+	</div>
+
+<form action='' method=POST>
+<table width="100%"  border="0" class="tfm"> 
+	<tr>
+		<td>$lang[expire_date]</td>
+		<input type=hidden id='epiredate' name='act' value='edit'>
+		<td><input type=text id='epiredate' name='expiredate' value='$array[expiredate]'> <input type=submit value="ÐÞ¸Ä"></td>
+	</tr>
+</table>
+</div>	
+</div>
+{template host:admin_sidebar}
+</div>
+{subtemplate common/footer}

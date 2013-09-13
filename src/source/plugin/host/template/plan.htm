@@ -1,0 +1,62 @@
+{subtemplate common/header}
+<div class="pagetitle">
+	<h1>购买云</h1> <span>在天空中挑选最适合您自己的那朵云彩吧...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner">
+			<h4 class="widgettitle">选购云</h4>
+			<table class="table">
+                    <colgroup>
+                        <col class="con0">
+                        <col class="con1">
+                        <col class="con0">
+                        <col class="con1">
+                        <col class="con0">
+                        <col class="con1">
+                        <col class="con0">
+                        <col class="con1">
+                        <col class="con0">
+					</colgroup>
+                    <thead>
+                        <tr>
+                            <th>方案名称</th>
+                            <th>CPU</th>
+                            <th>内存</th>
+                            <th>带宽</th>
+                            <th>磁盘(数据盘)</th>
+                            <th>操作系统</th>
+                            <th>机房</th>
+                            <th>价格</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+					<!--{if !$check}-->
+						<tr>
+							<td><div align='center'>&nbsp;<img src='./source/plugin/host/images/sorry.gif'>&nbsp;$lang[plan_under_cons]</div></td>
+						</tr> 	
+					<!--{else}-->
+						<!--{loop $Data $F}-->
+                        <tr>
+                            <td><b>$F[plan]</b></td>
+                            <td>$F[cpu]核心</td>
+                            <td>$F[memory]MB</td>
+                            <td>$F[traffic]Mbps</td>
+                            <td>$F[dataspace]GB</td>
+                            <td>$F[os]</td>
+                            <td>$F[dc]</td>
+							<td>月$F[monprice]元/年$F[yrprice]元</td>
+							<td><a href="plugin.php?id=host:host&page=apply&plan_id=$F[id]" class="btn"><span class="icon-shopping-cart"></span>订购</a></td>
+                        </tr>
+						<!--{/loop}-->
+					<!--{/if}-->
+                    </tbody>
+			</table>		
+	</div>
+</div>
+<script>
+    jQuery(document).ready(function(){
+		jQuery("#uname").html("$_G['username']");
+    });
+</script>
+{subtemplate common/footer}

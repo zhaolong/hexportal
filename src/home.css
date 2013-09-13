@@ -1,0 +1,8 @@
+body{position:relative}
+#home{position:relative;top:40%;margin:-200px auto 0 auto;}
+#home .wrapper{background:#d2d2d2;padding:20px 0 40px 0}
+#logo{background-image:url("logo.png?v=9");background-repeat:no-repeat;background-position:center center;height:79px}
+form{width:274px;margin:0 auto}
+.footer{padding:20px;background:#fff;text-align:center;}
+.footer a{color:#bbb;}
+.footer a:hover{color:#aaa}

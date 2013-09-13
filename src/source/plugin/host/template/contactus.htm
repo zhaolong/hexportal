@@ -1,0 +1,22 @@
+{subtemplate common/header}
+<div class="pagetitle">
+	<h1>联系销售</h1> <span>This is a sample description for edit profile page...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner content-editprofile">
+		<h4 class="widgettitle ">选择最适合您的联系方式来联系我们</h4>
+		<div class="widgetcontent bordered">
+		<table width="100%"  border="0" class="tfm">
+			<tr>
+				<td><a href="javascript:void(0);" onclick="window.open('http://connect.qq.com/widget/wpa/chat.html?tuin=88436812&sigT=67b584bd6637103a48c9de5f99c766b0fd155cdb8c017342922c1901dd05513778c5c8dfbd5ef1eedd46b86857f5b089&sigU=b9b0eed8014c13c9ba45608ddfb51d7b9b10b3f3df30f96e183026e26901cf079776d9efac300ade','qqkf', 'width=600,height=488,location=yes,status=yes,toolbar=no,resizable=no');"><span class="iconsweets-speech4"></span> OICQ 88436812 </a></td>
+				<td><span class="icon-envelope"></span><a title="$lang[email_api]" href="mailto:$array1[value]">$array1[value]</a></td>
+				<td><span class="iconsweets-iphone3"></span><!--{if $array2[value]}-->$array2[value]<!--{else}-->$lang[no_phone]<!--{/if}--></td>
+			</tr> 
+		</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function(){jQuery("#uname").html("$_G['username']");});
+</script>
+{subtemplate common/footer}

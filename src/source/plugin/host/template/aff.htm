@@ -1,0 +1,67 @@
+{subtemplate common/header}<p>
+        <link type='text/css' rel='stylesheet' href='./source/plugin/host/images/tangram-ui.css'/>
+        <script type="text/javascript" src="./source/plugin/host/images/tangram-dialog.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            function load_dialog() {
+                var options = { 
+                    buttons: {accept: {content: "<div class='tangram-dialog-button-label'>O K</div>", onclick:function(){
+                        dialogInstance.dispatchEvent("onaccept") && dialogInstance.close();
+                    }}},
+                    titleText : "Loading",					
+                    height: "50px",
+                    width : "230px",
+                    modal : true,
+                    modalColor : "#736FB0",
+                    draggable : true,
+                    contentText: "<div class='tangram-dialog-text'>&nbsp;Loading...Please wait...<img src='./source/plugin/host/images/icon_load.gif'></div>",
+                    autoRender: true
+                };
+                dialogInstance = new T.ui.Dialog(options);
+                dialogInstance.open();
+            }
+        </script>
+<div id="pt" class="bm cl">
+	<div class="z"><a  onclick="load_dialog();"  href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname] </a> <em>&rsaquo;</em><a  onclick="load_dialog();"  href="./plugin.php?id=host:host"  > DzWHM </a></div>
+</div>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+<div class="bm">
+    <div class="bm_h cl">
+		<h2>$lang[aff_center]</h2>
+	</div>
+<table width="100%"  border="0" class="tfm">
+	<tr>
+		<td><div align='center'><code id="code0">$_G[setting][siteurl]plugin.php?id=host:host&page=aff&aff=$discuz_uid</code><h5><span class="headactions" onclick="copycode($('code0'));">$lang[copy_click]</span></h5></div></td>
+	</tr> 
+</table>
+</div>
+<div class="bm">
+    <div class="bm_h cl">
+		<h2>$lang[aff_history]</h2>
+	</div>
+<table width="100%" class="tfm" cellspacing="2" cellpadding="2">
+    <tr>
+		<td width="18%" bgcolor="#E0E0E0"><div align="center"><b>$lang[apply_date]</b></div></td>
+		<td width="10%" bgcolor="#E0E0E0"><div align="center"><b>$lang[used_days]</b></div></td>
+		<td width="10%" bgcolor="#E0E0E0"><div align="center"><b>$lang[username]</b></div></td>
+		<td width="10%" bgcolor="#E0E0E0"><div align="center"><b>$lang[statues]</b></div></td>
+    </tr>
+<!--{if !$check}-->
+	<tr>
+		<td colspan="5"><div align='center'><img src='./source/plugin/host/images/sorry.gif'>&nbsp;$lang[no_records]</div></td>
+	</tr> 	
+<!--{/if}-->
+<!--{loop $Data $F}-->
+	<tr>
+		<td width="18%"><div align="center">$F[date_s]</div></td>
+        <td width="10%"><div align="center">$F[date_n] $lang[days]</div></td>
+        <td width="10%"><div align="center">$F[username]</div></td>
+        <td width="10%"><div align="center">$F[status]</div></td>
+    </tr>	
+<!--{/loop}--> 															  		
+</table>
+</div>
+</div>
+{template host:sidebar}
+</div>
+{subtemplate common/footer}

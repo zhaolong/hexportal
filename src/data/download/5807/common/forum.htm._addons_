@@ -1,0 +1,6 @@
+
+<style>
+.wp { width:980px; }
+.v2-wp { background:none; padding:0; width:980px;border-left:none;border-right:none; }
+.v2-ct, .v2-cb { display:none;}
+</style>

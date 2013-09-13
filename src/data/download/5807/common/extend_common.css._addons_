@@ -1,0 +1,79 @@
+#nv { float: left;}
+#nv ul {
+    float: left;
+    height: 40px;
+    padding: 0 3px;
+}
+.a_mu {
+    margin-bottom: 10px;
+    margin-top: 42px;
+}
+.bm {border:none;}
+.ie6 #pt .z em{padding-top: 5px;}
+.ie6 .nvhm {background: url({IMGDIR}/v2-indexico.png) no-repeat 0 10px;}
+.ie6 .hdc{ height:50px;}
+.eis_fitem_input{border:1px solid #444;background:#cccccc;height:23px;padding:0 5px;line-height:23px;vertical-align:middle;margin:0px;width:160px;}
+.eis_fitem_btn{color:#fff;background:#00C2ED;width:52px;height:25px;vertical-align:middle;line-height:25px;border:0px;margin:0 0 0 10px;}
+
+.eis_um {color: {HEADERTEXT};height: 39px;line-height: 39px;overflow: hidden;text-align: right;margin-right: 30px;padding-top: 2px;}
+.eis_um .avt img { height:25px; width:25px; padding:1px; margin-top:5px;}
+.eis_um a { color: {HEADERTEXT};padding: 0 5px;}
+.eis_um ul { float: right;height: 39px;overflow: hidden;margin-top: -5px;}
+.eis_um ul li { float: left;height: 39px;line-height: 39px;overflow: hidden;}
+.eis_um ul li.eis_line { background: url({IMGDIR}/eis_line.gif) no-repeat scroll 0 0 transparent;width: 1px;}
+.eis_um ul li.eis_logout{padding-right:10px;}
+.eis_um ul li.eis_ui a { float: left;height: 39px;padding: 0;width: 46px; cursor:pointer;}
+.eis_um ul li.eis_u1 a{background:url({IMGDIR}/eis_u1.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u1 a:hover{background:url({IMGDIR}/eis_u1.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u2 a{background:url({IMGDIR}/eis_u2.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u2 a:hover{background:url({IMGDIR}/eis_u2.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u3 a{background:url({IMGDIR}/eis_u3.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u3 a:hover{background:url({IMGDIR}/eis_u3.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u4 a{background:url({IMGDIR}/eis_u4.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u4 a:hover{background:url({IMGDIR}/eis_u4.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u5 a{background:url({IMGDIR}/eis_u5.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u5 a:hover{background:url({IMGDIR}/eis_u5.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u6 a{background:url({IMGDIR}/eis_u6.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u6 a:hover{background:url({IMGDIR}/eis_u6.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u7 a{background:url({IMGDIR}/eis_u7.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u7 a:hover{background:url({IMGDIR}/eis_u7.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u8 a{background:url({IMGDIR}/eis_u8.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u8 a:hover{background:url({IMGDIR}/eis_u8.png) no-repeat 0 -39px;}
+.eis_um ul li.eis_u9 a{background:url({IMGDIR}/eis_u9.gif) no-repeat 0 0;}
+.eis_um ul li.eis_u9 a:hover{background:url({IMGDIR}/eis_u9.png) no-repeat 0 -39px;}
+#u1{background:url({IMGDIR}/eis_u1.png) no-repeat 0 0px;}
+#u2{background:url({IMGDIR}/eis_u2.png) no-repeat 0 0px;}
+#u3{background:url({IMGDIR}/eis_u3.png) no-repeat 0 0px;}
+#u4{background:url({IMGDIR}/eis_u4.png) no-repeat 0 0px;}
+.eis_upop{padding:5px 10px;background:#fff;line-height:30px;margin-left:1px;border:1px solid #aaa;border-top:1px;min-width:60px;}
+.eis_upop li{height:30px;border-bottom:1px solid #eee;padding:0 5px;}
+.eis_upop li a{float:left;padding-left:25px;background-repeat:no-repeat;background-position:0 50%;color:#333;}
+.ie6 .eis_upop{width:100px;}
+.ie6 .eis_upop li,.ie7 .eis_upop li{margin-bottom:-8px;}
+.eis_upopt{padding:5px;background:#fff;line-height:30px;width:80px;margin-left:1px;border:1px solid #aaa;border-top:0px;}
+.eis_upopt li{float:left;width:30px;height:15px;margin:5px;overflow:hidden;cursor:pointer;}
+.eis_upopt li i{float:left;width:30px;height:15px;background:#354B66;}
+#u2_menu #pm_ntc{background-image:url({IMGDIR}/eis_pm.gif);}
+#u2_menu #pm_ntc.new{background-image:url({IMGDIR}/eis_newpm.gif);}
+#u2_menu #myprompt{background-image:url({IMGDIR}/eis_prompt.gif);}
+#u2_menu #myprompt.new{background-image:url({IMGDIR}/eis_newprompt.gif);background-position:0 50%;}
+#u2_menu #task_ntc{background-image:url({IMGDIR}/eis_task.gif);}
+#u31{background-image:url({IMGDIR}/eis_u31.gif);}
+#u32{background-image:url({IMGDIR}/eis_u32.gif);}
+#u33{background-image:url({IMGDIR}/eis_u33.gif);}
+#u34,.u34{background-image:url({IMGDIR}/eis_u34.gif);}
+#u35{background-image:url({IMGDIR}/eis_u35.gif);}
+
+#jingyan{width:136px; height:16px; background: url({IMGDIR}/snbg.gif) no-repeat; margin:5px auto 0; overflow:hidden}
+#jingyan ul{ padding:2px 2px 2px 22px; }
+.ie6 #jingyan ul{ padding:1px 2px 2px 22px; }
+
+.yr-tr { float:right; width:300px;}
+.yr-tr h2 { height:32px; margin-bottom:5px; font-size:20px; font-weight:100; color: {HIGHLIGHTLINK}; font-family:{YH}; overflow:hidden; }
+.yr-tr h2 span { display:inline-block; line-height:30px; padding:4px 25px 0 0; background: url({IMGDIR}/v2-hot.png) no-repeat 100% 0; }
+.yr-tr ul {}
+.yr-tr li { float:left; width:300px;  padding:11px 0; }
+.yr-tr li img { float:left; margin-right:15px; padding:1px; border:1px dotted {COMMONBORDER}; }
+.yr-tr li h1 { line-height:28px; font-size:16px; font-weight:100; }
+.yr-tr li h1, .yr-tr li h1 a { color: {HIGHLIGHTLINK}; }
+.yr-tr li p { color:{LIGHTTEXT};margin-top: 15px;}

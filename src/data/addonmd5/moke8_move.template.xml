@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Addon MD5]]></item>
+	<item id="ID"><![CDATA[moke8_move.template]]></item>
+	<item id="RevisionID"><![CDATA[11765]]></item>
+	<item id="SN"><![CDATA[2013022601sWRNltQTx2]]></item>
+	<item id="RevisionDateline"><![CDATA[1360136880]]></item>
+	<item id="Data">
+		<item id="/common/extend_common.css"><![CDATA[f7c77f21d8f77880130781ccbcf7fe02]]></item>
+		<item id="/common/footer.php"><![CDATA[cf2e93f86c1b1fdb1c48688a0dd308ff]]></item>
+		<item id="/common/header.php"><![CDATA[82e709b323e9dbd0444cefd2c9e373f1]]></item>
+		<item id="/common/header_common.php"><![CDATA[033e79884c68a2e36995324cb95dc454]]></item>
+		<item id="/discuz_style_moke8_move.xml"><![CDATA[b049936f97dfaa1614bd024259a45224]]></item>
+		<item id="/forum/discuz.php"><![CDATA[c0018df5e17a00f6c8be7493c88461c7]]></item>
+		<item id="/image/dashboard_bg.png"><![CDATA[b6ddea59b8fe19029a456f751badd8d5]]></item>
+		<item id="/image/header-pattern.png"><![CDATA[5708f7ae70a93b79e513fac3ef3a8979]]></item>
+		<item id="/image/logo.png"><![CDATA[f6c989ed29593088a6eca301fe0ac4b7]]></item>
+		<item id="/index.htm"><![CDATA[7215ee9c7d9dc229d2921a40e899ec5f]]></item>
+		<item id="/preview.jpg"><![CDATA[40197a5cdb5236a2bde9801d021cea4d]]></item>
+		<item id="/preview_large.jpg"><![CDATA[3217a326bbb3b916215f347719fb9a64]]></item>
+	</item>
+</root>

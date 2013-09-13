@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Addon MD5]]></item>
+	<item id="ID"><![CDATA[lootan_diswind.template]]></item>
+	<item id="RevisionID"><![CDATA[4378]]></item>
+	<item id="SN"><![CDATA[2013022522D7ZyaYpqYP]]></item>
+	<item id="RevisionDateline"><![CDATA[1343627080]]></item>
+	<item id="Data">
+		<item id="/common/common.css"><![CDATA[3b6dd35c09876a0ca60d860f43a4d3b4]]></item>
+		<item id="/common/header.htm"><![CDATA[400042d1ec3dc3d7d2b8e2932b46e3f0]]></item>
+		<item id="/common/header_common.htm"><![CDATA[677712c996719ef6a88ca8cfb4c89dd8]]></item>
+		<item id="/common/header_diy.htm"><![CDATA[23fd72512c327b3251b92aee617d53a3]]></item>
+		<item id="/common/module.css"><![CDATA[591d1fc0355e859dd1f8d14a5cd74a6e]]></item>
+		<item id="/common/pubsearchform.htm"><![CDATA[39b57f2604091390da26686fb0da5551]]></item>
+		<item id="/common/widthauto.css"><![CDATA[38eb4b2536007e2e151f7a236c4b275f]]></item>
+		<item id="/discuz_style_DisWind.xml"><![CDATA[79d57f75cf259b3fc7229b916c4c118b]]></item>
+		<item id="/forum/discuz.htm"><![CDATA[0598f652d3e48f405b0e42676ddae57c]]></item>
+		<item id="/forum/forumdisplay.htm"><![CDATA[cf60879c1e2de30c4d420f046e356b22]]></item>
+		<item id="/forum/forumdisplay_fastpost.htm"><![CDATA[cf00e57b624da48154b2258e37068f92]]></item>
+		<item id="/forum/forumdisplay_leftside.htm"><![CDATA[bb63f7e6ea9258e4fd376b102ffa59db]]></item>
+		<item id="/forum/forumdisplay_list.htm"><![CDATA[374e9ecd11f034d38ea10ba107748637]]></item>
+		<item id="/forum/forumdisplay_passwd.htm"><![CDATA[815f5ef330a6fce13ad90dcd38b0cc75]]></item>
+		<item id="/forum/forumdisplay_sort.htm"><![CDATA[bd55f788f5954a153a69497971d0e841]]></item>
+		<item id="/forum/forumdisplay_subforum.htm"><![CDATA[7851bf7aa28aba06867446c9bb259f16]]></item>
+		<item id="/forum/viewthread.htm"><![CDATA[5b39b9f2f70230b44d412fe00f16bf57]]></item>
+		<item id="/forum/viewthread_fastpost.htm"><![CDATA[a9bf7fa2795e65c5bbd3f0c0ef8ed33f]]></item>
+		<item id="/forum/viewthread_node.htm"><![CDATA[fc22a293d04320746a2973f52916bc53]]></item>
+		<item id="/forum/viewthread_node_body.htm"><![CDATA[882f766be1703c88f5a060f5227401a1]]></item>
+		<item id="/image/arrow.png"><![CDATA[e640deb077ebbabd8be672b0471c870c]]></item>
+		<item id="/image/bg_btn.png"><![CDATA[d77d9be3d9b56f990acd43019c436508]]></item>
+		<item id="/image/bg_pgbtn.png"><![CDATA[ae0699bf13bc0a52ef7a44f89fa11c4e]]></item>
+		<item id="/image/bg_waterfall.png"><![CDATA[76e9a20b59211d31490ffb1b13ca390c]]></item>
+		<item id="/image/btn.png"><![CDATA[783f79c56a3b120e8f19fa9bf8485f49]]></item>
+		<item id="/image/core_follow.png"><![CDATA[5a7012d9df8d734d48a694105b651554]]></item>
+		<item id="/image/header_post.png"><![CDATA[255f50d55e6fa7c53796b575194dff68]]></item>
+		<item id="/image/logo.png"><![CDATA[a015afc172d7b29e426a0cb31b098b45]]></item>
+		<item id="/image/post.png"><![CDATA[07a534037d47e4afb1c56dd2386c3510]]></item>
+		<item id="/image/posts_icon.png"><![CDATA[45a463a1780d15d0cb0235bc6eaf563f]]></item>
+		<item id="/image/redef.js"><![CDATA[adf8d0154eb99b2ae8fabe057e890cce]]></item>
+		<item id="/image/search.png"><![CDATA[e480bd76e4da03f6aedec2cdccce551b]]></item>
+		<item id="/image/setting.png"><![CDATA[cf6256921925464f9c1362b69d1632fa]]></item>
+		<item id="/image/threadbg_left.png"><![CDATA[f70bb3d1679446a6b9ba365802fbfd56]]></item>
+		<item id="/member/getpasswd.htm"><![CDATA[c0c09207fa07504da6a85455d67c9d36]]></item>
+		<item id="/member/login.htm"><![CDATA[dc45e48743f80a312d507a016acb0fbc]]></item>
+		<item id="/member/login_simple.htm"><![CDATA[e3b4056c781cbd36f77c97a46f8c5880]]></item>
+		<item id="/member/register.htm"><![CDATA[803beff203bbe4db86eeeafe9b96619d]]></item>
+		<item id="/portal/index.htm"><![CDATA[a5063c76f0468ff8b37e96063d6621df]]></item>
+		<item id="/portal_index.xml"><![CDATA[e692981846435ff1e323cd097901a179]]></item>
+		<item id="/preview.jpg"><![CDATA[7a43695484d588dfe674b96d95c64c6c]]></item>
+		<item id="/preview_large.jpg"><![CDATA[9b2f21c35574a099c178ba9a7721cd15]]></item>
+	</item>
+</root>

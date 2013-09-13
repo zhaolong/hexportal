@@ -1,0 +1,257 @@
+{subtemplate common/header}
+<div class="pagetitle">
+	<h1>订单{$order_id}</h1> <span>查看订单...</span>
+</div>
+<div class="maincontent">
+        	<div class="contentinner">
+            	<div class="row-fluid">
+                
+                <div class="span6">
+                
+                  <div class="invoice_logo"><img src="img/preview/comlogo.png" alt="" class="img-polaroid"></div>
+                  
+                  <table class="table table-bordered table-invoice">
+                      <tbody>
+					<tr>
+                          <td class="width30">支付给:</td>
+                          <td class="width70"><strong>和谐数据(www.hexdata.cn)</strong></td>
+                       </tr>
+                       <tr>
+                        <td>部门:</td>
+                        <td>财务部(bill@hexdata.cn)</td>
+                       </tr>
+                      </tbody>
+				</table>
+                </div><!--span6-->
+            
+				<div class="span6">
+			  <table class="table table-bordered table-invoice">
+                      <tbody>
+					  <tr>
+                          <td class="width30">来源:</td>
+                          <td class="width70">
+                            <strong>和谐会员 {$_G['username']}</strong> <br>
+                            Email: {$_G['member']['email']}
+                          </td>
+                        </tr>
+					</tbody>
+			  </table>
+               	  <br>
+                  <table class="table table-bordered table-invoice">
+                      <tbody><tr>
+                          <td class="width30">订单号:</td>
+                          <td class="width70"><strong>{$order_id}</strong></td>
+                      </tr>
+					<tr>
+                          <td class="width30">订单状态:</td>
+                          <td class="width70">
+                            <strong><!--{if $paid == 0}-->等待支付<!--{elseif $paid == -1}-->已作废<!--{else}-->已支付<!--{/if}--></strong>
+                          </td>
+                       </tr>
+					<tr>
+                        <td>生成日期:</td>
+                        <td><strong><!--{eval echo substr(date('l',strtotime($order_time)),0,3).date(', m  d, Y H:i:s',strtotime($order_time));}--></strong></td>
+					</tr>
+					<!--{if $paid == 0}-->
+                       <tr>
+                          <td>支付截止日期:</td>
+                          <td><strong><!--{eval echo substr(date('l', strtotime($order_time) + 86400 * 7 ),0,3).date(', m  d, Y', strtotime($order_time) + 86400 * 7);}--></strong></td>
+                      </tr>
+					<!--{else}-->
+                       <tr>
+                          <td>支付时间:</td>
+                          <td><strong><!--{$pay_time}--></strong></td>
+                      </tr>
+                       <!--{/if}-->
+                  </tbody></table>
+                </div><!--span6-->
+                
+            </div><!--row-fluid-->
+            
+            <div class="clearfix"><br></div>
+            
+            <table class="table table-bordered table-invoice-full">
+                    <colgroup>
+                        <col class="con0 width15">
+                        <col class="con1 width45">
+                        <col class="con0 width5">
+                        <col class="con1 width15">
+                        <col class="con0 width20">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th class="head0">类型</th>
+                            <th class="head1">描述</th>
+                            <th class="head1 right">单价</th>
+                            <th class="head0 right">量</th>
+                            <th class="head0 right">单项总计</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><!--{eval if( $type == 1 ) echo "新购主机"; else if( $type == 2 ) echo "续费主机";}--></td>
+                            <td><!--{if $hid && $type == 2 }--><!--{eval $d = DB::fetch_all("SELECT * FROM `host_user` WHERE `id` = ".$hid." LIMIT 0 , 1");$d = $d[0]; echo "续费主机编号:<a href='plugin.php?id=host:host&page=myhost&hid=".$hid."'>".$d['domain']."</a>";}--><br/><!--{/if}--><!--{eval echo "CPU:".$order_data['cpu']."核 <br/>"."内存:".$order_data['mem']."MB <br/>"."数据盘:".$order_data['storage']."GB <br/>"."带宽:".$order_data['bandwidth']."Mbps <br/>"."操作系统:".$order_data['os']." <br/>"."数据中心:".$order_data['datacenter'];}--></td>
+                            <td class="right">￥<!--{eval yuan($need_pay/$order_data['during']);}--></td>
+                            <td class="right">× <!--{eval echo $order_data['during'];echo $order_data['term']=="yr"?"年":"月";}--></td>
+                            <td class="right"><strong>￥<!--{eval yuan($need_pay);}--></strong></td>
+                        </tr>
+                   </tbody>
+                </table>
+                                
+                <table class="table invoice-table">
+                	<colgroup>
+                    	<col class="con0 width60">
+                        <col class="con0 width20">
+                        <col class="con1 width20">
+               		</colgroup>
+                    <tbody>
+                        <tr>
+                        	<td class="msg-invoice">
+          						<h4>提示:</h4>
+          						<p>因和谐数据赢利甚微，所以您若需要和谐数据开具发票，需要支付额外10%的税费。</p>
+                            </td>
+                            <td class="right">
+                            	<strong>小计</strong> <br>
+                                <strong>税 (0%)</strong> <br>
+                                <strong>折扣</strong>
+                            </td>
+                            <td class="right"><strong>
+							<!--{if $promo_price > 0}-->
+								<strike>￥<!--{eval yuan($need_pay);}--></strike>
+							<!--{else}-->
+								￥<!--{eval yuan($need_pay);}-->
+							<!--{/if}-->
+							<br>
+							+￥<!--{eval yuan(0);}-->
+							<br>
+							<!--{if $promo_price > 0}-->
+								<span class="coupon_much">-￥<!--{eval yuan( $need_pay -  $promo_price );}--></span> <a class="btn btn-mini btn-warning btn-promo" <!--{if $paid == 1}-->disabled<!--{/if}--> href="#couponDialog" data-toggle="modal"><!--{if $coupon}--><span class="icon-gift icon-white"></span> 优惠码: {$coupon}<!--{else}--><span class="icon-gift icon-white"></span> 输入优惠码<!--{/if}--></a>
+							<!--{else}-->
+								<span class="coupon_much">-￥<!--{eval yuan(0);}--></span> <a class="btn btn-small btn-warning btn-promo" <!--{if $paid == 1}-->href="javascript:void(0);"  disabled<!--{else}-->href="#couponDialog" data-toggle="modal"<!--{/if}-->><span class="icon-gift icon-white"></span> 输入优惠码</a>
+							<!--{/if}-->
+							</strong></td>
+                        </tr>
+                    </tbody>
+          </table>
+			
+         <div class="amountdue">
+          	<h1><span class="all_pre">总计:</span>￥<!--{if $promo_price > 0}--><!--{eval yuan($promo_price);}--><!--{else}--><!--{eval yuan($need_pay);}--><!--{/if}--></h1> <br>
+			<!--{if $paid == 0}-->
+                  <a href="#" class="btn btn-primary btn-large btn-checkout">支付订单</a>
+			<!--{elseif $paid == -1}-->
+                  <a href="#" class="btn btn-disabled btn-large btn-checkout">已作废</a>
+			<!--{elseif $paid == 1}-->
+                  <a href="#" class="btn btn-success btn-disabled btn-large btn-checkout">已支付</a>
+			<!--{/if}-->
+		</div>
+          
+          
+                
+                
+            </div><!--contentinner-->
+        </div>
+
+<div id="couponDialog" class="modal" style="display:none">
+   <div class="modal-header">
+      <button aria-hidden="true" data-dismiss="couponDialog" class="close btn-close-coupon">×</button>
+      <h3>优惠码</h3>
+   </div>
+   <div class="modal-body">
+      <p><strong>当前使用的优惠码: </strong><span id="coupon_code">{$coupon}</span><input type="text" class="input-small" <!--{if $coupon != ""}--> style="display:none;"<!--{/if}--> id="coupon_code_edit" value="{$coupon}" /> <a href="javascript:void(0);" class="btn btn-info btn-promo-do"<!--{if $coupon != ""}--> data-step="0">修改<!--{else}--> data-step="1">保存<!--{/if}--></a></p>
+      <p>优惠内容: <span id="coupon_content"><!--{if $coupon != ""}--><!--{eval $ccc = DB::fetch_all("SELECT `note` FROM host_coupon WHERE `code` = '".$coupon."';");}-->{$ccc[0][note]}<!--{/if}--></span></p>
+      <p>本次优惠金额: <span id="coupon_much" class="coupon_much"><!--{if $promo_price > 0}-->-￥<!--{eval yuan( $need_pay -  $promo_price );}--><!--{else}-->-￥<!--{eval yuan(0);}--><!--{/if}--></span></p>
+   </div>
+   <div class="modal-footer">
+      <a class="btn btn-close-coupon" href="#">关闭</a>
+      <a class="btn btn-primary" href="#">保存</a>
+   </div>
+</div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("#uname").html("$_G['username']");
+		<!--{if $paid == 0 }-->
+		jQuery(".btn-checkout.btn-primary.btn").click(function(){
+			jConfirm('确定支付？点击确认后将从账户余额中扣除相应费用。','hexPanel',function( callback ){
+				if( callback == true ){
+					/*If click on ok*/
+					jQuery.post('plugin.php?id=host:host\x26page=payorder','order_id={$order_id}&token={$hashToken}',function(data){
+						if( data == "1" ){
+							/* success */
+							<!--{if $type == 1 }-->
+							jAlert('支付成功，请等待客服审核，点击确定刷新本页面。',"hexPanel",function(){
+								location.reload()
+							});
+							<!--{else}-->
+							jAlert('支付成功，点击确定进入主机管理页面。',"hexPanel",function(){
+								location.href="plugin.php?id=host:host\x26page=myhost\x26hid={$hid}";
+							});
+							<!--{/if}-->
+						}else if( data == "-3" ){
+							jConfirm("余额不足，是否进入充值页面充值？","hexPanel",function(cb){
+								if( cb == true ){
+									location.href="plugin.php?id=host:host\x26page=pay#!how/<!--{eval if($promo_price > 0)echo $promo_price;else echo $need_pay;}-->";
+								}
+							});
+						}else{
+							jAlert("内部错误，请稍后重试","hexPanel",function(){
+								location.reload()
+							});
+						}
+					});
+				}
+			});
+			return false;
+		});
+		jQuery('.btn-promo').click(function(){
+			//return false;
+		});
+		jQuery('.btn-promo-do').click(function(){
+			jThis = jQuery(this);
+			var step = jThis.attr('data-step');
+			if( step == "0" ){
+				jQuery('#coupon_code').hide();
+				jQuery('#coupon_code_edit').show();
+				jThis.attr('data-step','1');
+			}else if ( step == "1" ){
+				coupon = jQuery('#coupon_code_edit').val();
+				jQuery.post('plugin.php?id=host:host\x26page=couponorder','token={FORMHASH}&order_id={$order_id}&coupon=' + coupon, function( data ){
+					if( data == "-1" ){
+						jAlert('优惠码无效','hexPanel');
+						return false;
+					}else if( data == "-2" ){
+						jAlert('优惠码已过期','hexPanel');
+						return false;
+					}else if( data == "-3" ){
+						jAlert('优惠码未生效','hexPanel');
+						return false;
+					}else if( data == "-4" ){
+						jAlert('优惠码使用次数已超过限制','hexPanel');
+						return false;
+					}else{
+						jAlert('优惠码使用成功，点击刷新本页面','hexPanel',function(){
+							location.href+='';
+						})
+					}
+				});
+			}
+		});
+		jQuery('.btn-close-coupon').click(function(){
+			jQuery('.modal-backdrop.in').click();
+			return false;
+		});
+		<!--{else}-->
+		jQuery(".btn-checkout.btn-disabled.btn").click(function(){
+			return false;
+		});
+		jQuery('.btn-promo').click(function(){
+			
+			return false;
+		});
+		<!--{/if}-->
+		
+	});
+</script>
+
+
+{subtemplate common/footer}

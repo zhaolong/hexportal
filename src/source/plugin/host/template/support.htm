@@ -1,0 +1,81 @@
+{subtemplate common/header}<p>
+        <link type='text/css' rel='stylesheet' href='./source/plugin/host/images/tangram-ui.css'/>
+        <script type="text/javascript" src="./source/plugin/host/images/tangram-dialog.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            function load_dialog() {
+                var options = { 
+                    buttons: {accept: {content: "<div class='tangram-dialog-button-label'>O K</div>", onclick:function(){
+                        dialogInstance.dispatchEvent("onaccept") && dialogInstance.close();
+                    }}},
+                    titleText : "Loading",					
+                    height: "50px",
+                    width : "230px",
+                    modal : true,
+                    modalColor : "#736FB0",
+                    draggable : true,
+                    contentText: "<div class='tangram-dialog-text'>&nbsp;Loading...Please wait...<img src='./source/plugin/host/images/icon_load.gif'></div>",
+                    autoRender: true
+                };
+                dialogInstance = new T.ui.Dialog(options);
+                dialogInstance.open();
+            }
+        </script>
+<style type="text/css">
+.ct2_a .mn {width:770px;}
+.tl {padding:4px 8px;}
+.style13 {color: #FFFFFF}
+.tl table {width:100%;table-layout:auto;}
+.tl input {height:20px;}
+.tl td {padding:8px 12px;}
+.appl {width:155px;margin:8px 0;}
+.pm {height:25px;overflow:hidden;width:80px;}
+.tl td p{padding:2px}
+.style2 {color: #999999}
+.style13 {color: #FFFFFF}
+.style14 {color: #333333}
+.style15 {color: #FFFFFF; font-weight: bold; }
+.style16 {color: #00BB00; font-weight: bold; }
+.style28 {color: #2828FF}
+</style>
+<div id="pt" class="bm cl">
+	<div class="z"><a  onclick="load_dialog();"  href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname] </a> <em>&rsaquo;</em><a  onclick="load_dialog();"  href="./plugin.php?id=host:host"  > DzWHM </a></div>
+</div>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+<form id="form3" name="form3" method="post" action=''>
+<div class="bm">
+    <div class="bm_h cl">
+		<h2>$lang[add_tk]</h2>
+	</div>
+	<table width="100%"  border="0" class="tfm">
+		<ul class="tb cl">
+			<li><a  onclick="load_dialog();"  href="plugin.php?id=host:host&page=tickets">$lang[tk_s]</a></li>
+			<li><a  onclick="load_dialog();"  href="plugin.php?id=host:host&page=support">$lang[add_tk]</a></li>
+		</ul>
+		<tr>
+			<td>$lang[title]</td>
+			<td><input type="text" name="title" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+		</tr> 
+		<tr>
+			<td>$lang[urgency]:</td>
+			<td><select name="urgency">
+					<option value="Low"  >Low</option>
+                    <option value="Medium" selected="selected" >Medium</option>
+					<option value="High" >High</option>
+                </select></td>
+		</tr>
+		<tr>
+			<td>$lang[content]</td>
+			<td id="td_sightml">
+					<textarea rows="6" cols="50" name="content"  class="pt"></textarea></tr> 
+		<tr>
+			<th>&nbsp;</th>
+			<td><button type="submit" class="pn vm" name="submit" onclick="load_dialog()"><em>$lang[submit]</em></button></td>
+		</tr>
+	</table>
+</div>
+</form>
+</div>
+{template host:sidebar}
+</div>
+{subtemplate common/footer}

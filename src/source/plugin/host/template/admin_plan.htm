@@ -1,0 +1,153 @@
+{subtemplate common/header}
+<div class="pagetitle">
+	<h1>管理中心_方案</h1> <span>方案...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner">
+		<div class="span10">
+			<h4 class="widgettitle">管理中心_方案</h4>
+			<div class="widgetcontent">
+
+				<div id="tabs" class="tabs">
+					<ul>
+						<li><a href="#manage">管理<!--{if $_GET['action'] =='manage'}--> # $array6[plan]<!--{/if}--></a></li>
+						<li><a href="#add">新增</a></li>
+					</ul>
+					<div id="manage">
+						<table class="table">
+							<colgroup>
+								<col class="con0">
+								<col class="con1">
+							</colgroup>
+							<thead>
+								<tr>
+									<th><b>$lang[plan_name]</b></th>
+									<th><b>$lang[action]</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<!--{if !$check}-->
+									<tr>
+										<td colspan="2">$lang[plz_add_plan]</td>
+									</tr> 	
+								<!--{/if}-->
+								<!--{loop $Data $F}-->
+								<tr>
+									<td>$F[plan]</td>
+									<td><a href="plugin.php?id=host:host&panel=admin&type=plan&action=manage&no=$F[id]">$lang[edit]</a>&nbsp;|&nbsp;<a href="plugin.php?id=host:host&panel=admin&type=plan&action=delete&no=$F[id]">$lang[del]</a></td>
+								</tr>
+								<!--{/loop}-->
+							</tbody>
+						</table>
+						<!--{if $_GET['action'] =='manage'}-->	
+						<form method="post" action="plugin.php?id=host:host&panel=admin&type=plan&action=change&no=$array6[id]">
+							<table width="100%" cellspacing="0" cellpadding="0">
+								<tr>
+									<td bgcolor="#E0E0E0"><b>$lang[plan_name]</b></td>
+									<td colspan="3" bgcolor="#E0E0E0"><input type="text" name="plan" style="font-family: Verdana; font-size: 9pt" value="$array6[plan]" size="10"/></td>
+								</tr>
+								<tr>
+									<td>数据盘(GB)</td>
+									<td><input name="dataspace" type="text" style="font-family: Verdana; font-size: 9pt" value="$array6[dataspace]" size="10"/><input name="space" type="hidden" value="20"/></td>
+								</tr>
+								<tr>
+									<td>带宽(Mbps)</td>
+									<td><input name="traffic" type="text" style="font-family: Verdana; font-size: 9pt" value="$array6[traffic]" size="10"/></td>
+								</tr>
+								<tr>
+									<td>CPU</td>
+									<td><input name="cpu" type="text" style="font-family: Verdana; font-size: 9pt" value="$array6[cpu]" size="10"/></td>
+								</tr>
+								<tr>
+									<td>内存(MB)</td>
+									<td><input name="memory" type="text" style="font-family: Verdana; font-size: 9pt" value="$array6[memory]" size="10"/></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_mon_price]</td>
+									<td><input name="monprice" type="text" id="monprice" value="$array6[monprice]" size="5"style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_semi_anual_price]</td>
+									<td><input name="sixmonprice" type="text" id="sixmonprice" value="$array6[sixmonprice]" size="5"style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_anual_price]</td>
+									<td><input name="yrprice" type="text" id="yrprice" size="5" value="$array6[yrprice]" style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_dou_anual_price]</td>
+									<td><input name="twoyrprice" type="text" id="twoyrprice" size="5" value="$array6[twoyrprice]" style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td colspan="4"><div align="center"><button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button></div></td>
+								</tr>
+							</table>
+						</form>
+						<!--{/if}-->  
+
+					</div>
+					<div id="add">
+
+							<form action="plugin.php?id=host:host&panel=admin&type=plan&action=add" method="POST">
+								<table width="100%" cellspacing="0" cellpadding="0">
+								<tr>
+									<td bgcolor="#E0E0E0"><b>$lang[plan_name]</b></td>
+									<td colspan="3" bgcolor="#E0E0E0"><input type="text" name="plan" style="font-family: Verdana; font-size: 9pt" size="10"/></td>
+								</tr>
+								<tr>
+									<td>数据盘(GB)</td>
+									<td><input name="dataspace" type="text" style="font-family: Verdana; font-size: 9pt" size="10"/><input name="space" type="hidden" value="20"/></td>
+								</tr>
+								<tr>
+									<td>带宽(Mbps)</td>
+									<td><input name="traffic" type="text" style="font-family: Verdana; font-size: 9pt" size="10"/></td>
+								</tr>
+								<tr>
+									<td>CPU</td>
+									<td><input name="cpu" type="text" style="font-family: Verdana; font-size: 9pt" size="10"/></td>
+								</tr>
+								<tr>
+									<td>内存(MB)</td>
+									<td><input name="memory" type="text" style="font-family: Verdana; font-size: 9pt"  size="10"/></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_mon_price]</td>
+									<td><input name="monprice" type="text" id="monprice" size="5"style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_semi_anual_price]</td>
+									<td><input name="sixmonprice" type="text" id="sixmonprice" size="5"style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_anual_price]</td>
+									<td><input name="yrprice" type="text" id="yrprice" size="5" style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td>$lang[plan_dou_anual_price]</td>
+									<td><input name="twoyrprice" type="text" id="twoyrprice" size="5" style="font-family: Verdana; font-size: 9pt" /></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="3"> 
+										<button type="submit" class="btn btn-primary" name="submit"><em>$lang[submit]</em></button>
+										<button type="reset" class="btn" name="submit"><em>$lang[reset_]</em></button>
+									</td>
+								</tr>
+								</table>
+							</form>  
+
+						</div>
+				</div><!--#tabs-->
+
+
+
+			</div>
+		</div>
+		<div class="span2">
+			{template host:admin_sidebar}
+		</div>
+	</div>
+</div>
+
+{subtemplate common/footer}
+

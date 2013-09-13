@@ -1,0 +1,103 @@
+{subtemplate common/header}<p>
+        <link type='text/css' rel='stylesheet' href='./source/plugin/host/images/tangram-ui.css'/>
+        <script type="text/javascript" src="./source/plugin/host/images/tangram-dialog.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            function load_dialog() {
+                var options = { 
+                    buttons: {accept: {content: "<div class='tangram-dialog-button-label'>O K</div>", onclick:function(){
+                        dialogInstance.dispatchEvent("onaccept") && dialogInstance.close();
+                    }}},
+                    titleText : "Loading",					
+                    height: "50px",
+                    width : "230px",
+                    modal : true,
+                    modalColor : "#736FB0",
+                    draggable : true,
+                    contentText: "<div class='tangram-dialog-text'>&nbsp;Loading...Please wait...<img src='./source/plugin/host/images/icon_load.gif'></div>",
+                    autoRender: true
+                };
+                dialogInstance = new T.ui.Dialog(options);
+                dialogInstance.open();
+            }
+        </script>
+<style type="text/css">
+.ct2_a .mn {width:770px;}
+.tl {padding:4px 8px;}
+.style13 {color: #FFFFFF}
+.tl table {width:100%;table-layout:auto;}
+.tl input {height:20px;}
+.tl td {padding:8px 12px;}
+.appl {width:155px;margin:8px 0;}
+.pm {height:25px;overflow:hidden;width:80px;}
+.tl td p{padding:2px}
+.style2 {color: #999999}
+.style13 {color: #FFFFFF}
+.style14 {color: #333333}
+.style15 {color: #FFFFFF; font-weight: bold; }
+.style16 {color: #00BB00; font-weight: bold; }
+.style28 {color: #2828FF}
+</style>
+<div id="pt" class="bm cl">
+	<div class="z"><a  onclick="load_dialog();"  href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname] </a> <em>&rsaquo;</em><a  onclick="load_dialog();"  href="./plugin.php?id=host:host"> DzWHM </a></div>
+</div>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+<div class="bm">
+    <div class="bm_h cl">
+		<h2>$lang[index_servinfo]</h2>
+	</div>
+    <table width="100%" border="0" class="tfm">
+		<tr bgcolor="#C0C0C0">
+			<td width='30%'><div class="style15">&nbsp; $lang[server_name] </div></td>		
+			<td width='10%'><div class="style15"> HTTP</div></td> 		
+			<td width='10%'><div class="style15"> FTP</div></td> 		
+			<td width='10%'><div class="style15"> POP3</div></td> 		
+			<td width='10%'><div class="style15"> DNS</div></td> 	
+			<td width='10%'><div class="style15"> $lang[server_location]</div></td> 			
+			<td width='10%'><div class="style15"> $lang[control_panel]</div></td> 	
+			<td width='10%'><div class="style15"> $lang[refresh]</div></td> 	
+
+<!--{if !$check}-->
+		<tr>
+			<td colspan="7"><div align="center">&nbsp;<img src='./source/plugin/host/images/sorry.gif'>&nbsp;$lang[none_serv_watched]</div></td>
+		</tr> 	
+<!--{/if}-->	
+<!--{loop $Data $F}-->
+		<tr>
+			<td width='30%' id=$F[server]><b>&nbsp;<img src='./source/plugin/host/images/aicon.png'>&nbsp; $F[server]</b></td>		
+			<td width='10%'><img id='$F[server]httpimg' src="./source/plugin/host/images/indicator.gif"></td> 		
+			<td width='10%'><img id='$F[server]ftpimg' src="./source/plugin/host/images/indicator.gif"></td> 		
+			<td width='10%'><img id='$F[server]pop3img' src="./source/plugin/host/images/indicator.gif"></td> 	
+			<td width='10%'><img id='$F[server]dnsimg' src="./source/plugin/host/images/indicator.gif"></td>
+<script language="JavaScript" type="text/javascript">
+document.getElementById('$F[server]httpimg').src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=80';
+document.getElementById('$F[server]ftpimg').src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=21';
+document.getElementById('$F[server]pop3img').src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=25';
+document.getElementById('$F[server]dnsimg').src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=53';
+a=1;
+function hs_$F[id]()
+{
+document.getElementById("$F[server]httpimg").src="./source/plugin/host/images/indicator.gif";
+document.getElementById("$F[server]ftpimg").src="./source/plugin/host/images/indicator.gif";
+document.getElementById("$F[server]pop3img").src="./source/plugin/host/images/indicator.gif";
+document.getElementById("$F[server]dnsimg").src="./source/plugin/host/images/indicator.gif";
+
+document.getElementById("$F[server]httpimg").src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=80&ref='+a;
+document.getElementById("$F[server]ftpimg").src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=21&ref='+a;
+document.getElementById("$F[server]pop3img").src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=25&ref='+a;
+document.getElementById("$F[server]dnsimg").src='./source/plugin/host/core/includes/servers/status/status.php?host=$F[ip]&port=53&ref='+a;
+a++;
+}
+</script>
+
+			<td width='10%'>$F[location]</td>		
+			<td width='10%'>$F[cp]</td>
+			<td width='10%'><a onclick='hs_$F[id]();' href='plugin.php?id=host:host&page=server#$F[server]'>$lang[refresh]</a></td>
+		</tr>
+<!--{/loop}-->
+</table>
+</div>
+</div>
+{template host:sidebar}
+</div>
+{subtemplate common/footer}

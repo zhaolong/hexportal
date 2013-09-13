@@ -1,0 +1,39 @@
+{subtemplate common/header}<p>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host" >DzWHM</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host&panel=admin&type=home" >$lang[admin_panel]</a>
+	</div>
+</div>
+<div id="ct" class="ct2 wp cl">
+<div class="mn">
+<ul class="tb cl">
+	<li><a href="plugin.php?id=host:host&panel=admin&type=addkb">$lang[add_faq]</a></li>
+	<li><a href="plugin.php?id=host:host&panel=admin&type=kb">$lang[config_faq]</a></li>
+</ul>
+<table width="100%" height="21" class="tfm">
+    <tr>
+		<td bgcolor="#E0E0E0"width="25%" ><div align="center"><b>ID</b></div></td>
+        <td bgcolor="#E0E0E0"width="15%" ><div align="center"><b>$lang[title]</b></div></td>
+		<td bgcolor="#E0E0E0"width="15%"><div align="center"><b>$lang[action]</b></div></td>
+	</tr>
+<!--{if !$check}-->
+	<tr>
+		<td colspan="3"><div align="center">$lang[faq_not_found]</div></td>
+	</tr> 	
+<!--{/if}-->
+<!--{loop $Data $F}--> 
+	<tr>
+		<td><div align="center">$F[id]</div></td>
+		<td><div align="center">$F[title]</div></td>
+		<td><div align="center"><a href="plugin.php?id=host:host&panel=admin&type=editkb&no=$F[id]"><font color="#FF0000">$lang[edit]</font></a> | <a href="plugin.php?id=host:host&panel=admin&type=kb&action=delete&no=$F[id]"><font color="#FF0000">$lang[del]</font></a>
+	</tr> 
+<!--{/loop}-->
+</table>		
+</div>
+{template host:admin_sidebar}
+</div>
+</div>
+
+{subtemplate common/footer}

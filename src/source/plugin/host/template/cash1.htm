@@ -1,0 +1,87 @@
+{subtemplate common/header}
+<div class="content" style="">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>续费 renew</h1>
+			<p class="lead">
+			为云主机续费
+			</p>
+		</div>
+		<div class="pane">
+
+<table class="table">
+<colgroup>
+<col class="con0">
+<col class="con1">
+</colgroup>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>&nbsp;云编号</b></td>		
+<td>$arrayx[domain] <a href="<!--{if $_SERVER['HTTP_REFERER']}-->$_SERVER['HTTP_REFERER']<!--{else}-->plugin.php?id=host:host&page=myhost&hid=$arrayx[id]<!--{/if}-->">返回管理主机</a></td>
+</tr>
+<tr>
+<td><b>&nbsp;云型号</b></td>		
+<td>$arrayx[plan]</td>
+</tr>
+<tr>
+<td><b>&nbsp;申请日期</b></td>
+<td>$arrayx[date_s]</td>
+</tr>
+<tr>
+<td><b>&nbsp;过期日</b></td>
+<td>$arrayx[expiredate]</td>
+</tr>
+<tr>
+<td><b>&nbsp;状态</b></td>
+<td>&nbsp;<span id="stspan">$arrayx[status]</span></td>
+</tr>	
+<tr>
+<td><b>&nbsp;续费操作</b></td>
+<td>
+			<select name="renew" id="renew">
+				<option value=\"javascript:void(0);">请选择续费时长</option>
+				$monprice
+				$sixmonprice
+				$yrprice
+				$twoyrprice
+			</select>
+			<a href="#" class="btn btn-renew" style="line-height:18px"><span class="icon icon-refresh"></span> 确认续费</a>
+</td>
+</tr>	
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<script>
+	function dp(data){
+		var a = data.split('|');
+		if(a){
+			if(a == "-5" ){
+				jAlert('续费时发生错误，请联系我们！');
+			}
+			if(a[0] == "1"&&a[1]){
+				x_url = "plugin.php?id=host:host\x26page=listorder#view/id/"+a[1];
+				jAlert("为主机{$arrayx[domain]}下订单<a href='"+x_url+"' target='_blank'>#"+a[1]+"</a>成功,点击确定进入订单查看页。","hexPanel",function(){
+					location.href=x_url;
+				});
+			}
+		}
+	}
+    jQuery(document).ready(function(){
+		jQuery("#uname").html("$_G['username']");
+		jQuery(".btn-renew").click(function(){
+			eval(jQuery('#renew').val());
+			return false;
+		});
+    });
+</script>
+{subtemplate common/footer}

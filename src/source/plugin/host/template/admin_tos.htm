@@ -1,0 +1,30 @@
+{subtemplate common/header}<p>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host" >DzWHM</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host&panel=admin&type=home" >$lang[admin_panel]</a>
+	</div>
+</div>
+<div id="ct" class="ct2 wp cl">
+<div class="mn">
+<ul class="tb cl">
+	<li><a href="plugin.php?id=host:host&panel=admin&type=setting">$lang[basci_setting]</a></li>
+	<li><a href="plugin.php?id=host:host&panel=admin&type=tos">$lang[tos_setting]</a></li>
+</ul>
+<form id="form2" name="form2" method="post" action="">
+	<table>
+		<tr>
+            <td><textarea cols="100" rows="10" style="font-family: Verdana; font-size: 9pt" class="pt" class="pt" name="tos" >$array[value]</textarea></td>
+		</tr>
+		<tr>
+			<td><div align="center"><button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button></div></td>
+		</tr>
+    </table>
+</form>
+</div>
+{template host:admin_sidebar}
+</div>
+</div>
+
+{subtemplate common/footer}

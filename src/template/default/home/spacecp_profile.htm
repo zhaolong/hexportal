@@ -1,0 +1,95 @@
+<!--{subtemplate common/header}-->
+		<div class="content" style="">
+			<div class="wrapper">
+				<div class="page-intro">
+					<h1>账户设置 profile</h1>
+					<p class="lead">
+					</p>
+				</div>
+				<div id="summary" class="pane">
+				<div class="alert alert-info">
+				<!--{if !$_G['setting']['connect']['allow'] || !$conisregister}-->{lang old_password_comment}<!--{else}-->{lang connect_config_newpassword_comment}<!--{/if}-->
+				</div>
+	<!--{if !$validate}-->
+		<!--{if $operation == 'password'}-->
+			<form action="home.php?mod=spacecp&ac=profile" method="post" autocomplete="off" class="stdform">
+				<input type="hidden" value="{FORMHASH}" name="formhash" />
+				<table summary="{lang memcp_profile}" cellspacing="0" cellpadding="0" class="tfm">
+					<!--{if !$_G['setting']['connect']['allow'] || !$conisregister}-->
+						<div class="par control-group">
+							<label for="oldpassword" class="control-label c80">旧密码</label>
+							<div class="controls">
+								<input type="password" name="oldpassword" id="oldpassword" class="span4" placeholder="请输入旧密码">
+								<span class="help-inline" style="display:none;">旧密码不能为空</span>
+							</div>
+                        </div>
+					<!--{/if}-->
+					<div class="par control-group">
+						<label for="password" class="control-label c80">{lang new_password}</label>
+						<div class="controls">
+							<input type="password" name="newpassword" id="newpassword" class="span4" placeholder="请输入新密码">
+						</div>
+					</div>
+					<div class="par control-group">
+						<label for="newpassword2" class="control-label c80">{lang new_password_confirm}</label>
+						<div class="controls">
+							<input type="password" name="newpassword2" id="newpassword2" class="span4" placeholder="请再次输入新密码">
+						</div>
+					</div>
+					<div class="par control-group">
+						<label for="emailnew" class="control-label c80">{lang email}</label>
+						<div class="controls">
+							<input type="text" name="emailnew" id="emailnew" value="$space[email]" class="span4" placeholder="请再次输入新密码">
+						</div>
+					</div>
+					<div class="par control-group">
+							<p style="width: 370px;">
+								<!--{if empty($space['newemail'])}-->
+									{lang email_been_active}
+								<!--{else}-->
+									<span class="icon-envelope"></span>新邮箱($space['newemail'])等待验证中...系统已经向该邮箱发送了一封验证激活邮件，请查收邮件，进行验证激活。如果没有收到验证邮件，您可以更换一个邮箱，或者<a href="home.php?mod=spacecp&ac=profile&op=password&resend=1" class="xi2">重新接收验证邮件</a>
+								<!--{/if}-->
+							</p>
+							<!--{if $_G['setting']['regverify'] == 1 && (($_G['group']['grouptype'] == 'member' && $_G['adminid'] == 0) || $_G['groupid'] == 8)}--><p class="d">{lang memcp_profile_email_comment}</p><!--{/if}-->					
+						</div>
+					</div>
+
+
+
+					<!--{if checkperm('seccode') && ($secqaacheck || $seccodecheck)}-->
+					<!--{eval $sectpl = '<tr><th><sec></th><td><sec><p class="d"><sec></p></td>';}-->
+					<!--{subtemplate common/seccheck}-->
+					<!--{/if}-->
+					<div class="par control-group">
+						<div class="controls">
+							<button class="btn btn-primary">{lang save}</button>
+						</div>
+					</div>
+
+				</table>
+				<input type="hidden" name="passwordsubmit" value="true" />
+			</form>
+		<!--{else}-->
+			<!--{hook/spacecp_profile_top}-->
+			<!--{subtemplate home/spacecp_profile_nav}-->
+				<!--{if $vid}-->
+				<p class="tbms mtm {if !$showbtn}tbms_r{/if}"><!--{if $showbtn}-->{lang spacecp_profile_message1}<!--{else}-->{lang spacecp_profile_message2}<!--{/if}--></p>
+				<!--{/if}-->
+		<!--{/if}-->
+	<!--{/if}-->
+</div>
+</div>
+</div>
+<script>
+jQuery(document).ready(function(){
+	jQuery('form').submit(function(){
+		if(jQuery('#oldpassword').val()==""){
+			jQuery('.help-inline').show();
+			jQuery('#oldpassword').focus().parent().parent().addClass('warning');
+			return false;
+		}
+	});
+	jQuery("#uname").html("$_G['username']");
+});
+</script>
+<!--{subtemplate common/footer}-->

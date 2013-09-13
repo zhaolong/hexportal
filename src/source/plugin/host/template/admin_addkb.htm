@@ -1,0 +1,35 @@
+{subtemplate common/header}<p>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host" >DzWHM</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host&panel=admin&type=home" >$lang[admin_panel]</a>
+	</div>
+</div>
+<div id="ct" class="ct2 wp cl">
+<div class="mn">
+<ul class="tb cl">
+	<li><a href="plugin.php?id=host:host&panel=admin&type=addkb">$lang[add_faq]</a></li>
+	<li><a href="plugin.php?id=host:host&panel=admin&type=kb">$lang[config_faq]</a></li>
+</ul>
+<form action="" method="POST">
+	<table width="100%" height="121" class="tfm">
+		<tr>
+			<td width="151" bgcolor="#E0E0E0"height="22"><b>$lang[title]</b></td>
+			<td width="262" bgcolor="#E0E0E0" ><input type="text" name="title" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+		</tr>
+		<tr>
+			<td>$lang[content]</td>
+			<td><textarea name="content" id="content" cols="50" rows="10" style="font-family: Verdana; font-size: 9pt" class="pt"></textarea></td>
+		</tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td colspan="3"> <button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button><button type="reset" class="pn vm" name="submit2"><em>$lang[reset_]</em></button></td>
+        </tr>
+	</table>
+</form> 		
+</div>
+{template host:admin_sidebar}
+</div>
+</div>
+{subtemplate common/footer}

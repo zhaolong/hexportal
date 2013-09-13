@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Addon MD5]]></item>
+	<item id="ID"><![CDATA[veikei_dz_com_20120821_gray_free.template]]></item>
+	<item id="RevisionID"><![CDATA[5195]]></item>
+	<item id="SN"><![CDATA[201302252234gT5V53L3]]></item>
+	<item id="RevisionDateline"><![CDATA[1356079195]]></item>
+	<item id="Data">
+		<item id="/common/extend_common.css"><![CDATA[47c2d7a082c06bc823c0b507c23bf7d1]]></item>
+		<item id="/common/footer.htm"><![CDATA[83e99bfb1b08abc3cbf5cf126c84d6f6]]></item>
+		<item id="/common/header.htm"><![CDATA[ba696da42a16a7db554d5bb78eac4999]]></item>
+		<item id="/discuz_style_veikei_dz_com_20120821_gray_free.xml"><![CDATA[42d801f14b5356c1455bfb8c92bbc1e2]]></item>
+		<item id="/images/bg.png"><![CDATA[4c7bbd98a5b5f307316f361c51fc1c01]]></item>
+		<item id="/images/bg_ft.png"><![CDATA[57e54ac5fee359d429978e43a2e1a6cf]]></item>
+		<item id="/images/bg_head.png"><![CDATA[4a66a8c8c176609593a6253314d0d762]]></item>
+		<item id="/images/bg_tbn_a.png"><![CDATA[8ca070ca190b72c2633deabb4d9e1c2d]]></item>
+		<item id="/images/bg_vk_index_title.png"><![CDATA[ae821106c1e443a1b9525c13a57fb2ff]]></item>
+		<item id="/images/index.htm"><![CDATA[7215ee9c7d9dc229d2921a40e899ec5f]]></item>
+		<item id="/images/logo.png"><![CDATA[58763590261cfc0be9acf776b9c61c7f]]></item>
+		<item id="/images/nv.gif"><![CDATA[6f53ad468e2b9ba129f931e8152b0a5a]]></item>
+		<item id="/images/nv.png"><![CDATA[cb2647deb5d6cc1d66890fe88de01449]]></item>
+		<item id="/images/nv_a.png"><![CDATA[0afa8e788f1f3a2e0912244282aa20f8]]></item>
+		<item id="/index.htm"><![CDATA[7215ee9c7d9dc229d2921a40e899ec5f]]></item>
+		<item id="/preview.jpg"><![CDATA[689666683fbcc863c88ac7361bdc7c2f]]></item>
+		<item id="/preview_large.jpg"><![CDATA[0c3f7ffb89d492c769fb72f8b41eca94]]></item>
+	</item>
+</root>

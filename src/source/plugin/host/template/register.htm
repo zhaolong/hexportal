@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>和谐数据 —— 基于飞天云计算平台的云端控制台</title>
+<link rel="stylesheet" href="//dn-hexpanel.qbox.me/hexData_compile_130303E5DE0B8EB60CCD6AD3074635075D9D06.css?130714_001" type="text/css">
+<script src="//dn-hexpanel.qbox.me/hexData_compile_1303035FF7D456B7F370A80195BCD3B18F1256.js" type="text/javascript" type="text/javascript"></script>
+</head>	
+<body>
+<div class="mainwrapper" style="background:#bbb;width:840px;">
+	<div class="pagetitle">
+        <h1>注册</h1> <span>您正在注册账号...</span>
+	</div>
+	<div class="maincontent" style="background:url(http://hexcdn.oss.aliyuncs.com/img/gray_jean.png);">
+		<div class="contentinner">
+			<div class="widgetcontent">
+                	<form class="stdform" action="forms.html" method="post" id="reg">
+						<div class="par control-group">
+                        	<label>用  户</label>
+							<div class="controls">
+								<input type="text" name="username" id="username" class="input-large" placeholder="">
+								<span class="help-inline">注册成功后将可用此用户名在和谐数据登录</span>
+							</div>
+                        </div>
+						<div class="par control-group">
+                        	<label>密  码</label>
+                            <div class="controls">
+								<input type="password" name="password" id="password" class="input-large" placeholder="">
+								<span class="help-inline">请务必记住并保管好密码勿泄露给第三方</span>
+							</div>
+                        </div>
+						<div class="par control-group">
+                        	<label>邮  箱</label>
+                            <div class="controls">
+								<input type="text" name="email" id="email" class="input-large" placeholder="">
+								<span class="help-inline">此邮箱是找回密码的重要凭具</span>
+							</div>
+                        </div>
+						<div class="par control-group">
+                        	<label>手  机</label>
+                            <div class="controls">
+								<input type="text" name="mobile" id="mobile" class="input-large" placeholder="">
+								<span class="help-inline">客服将在必要时用此手机号与您联系</span>
+							</div>
+                        </div>
+						<p class="stdformbutton">
+                        	<button class="btn btn-primary">提交注册</button>
+                        </p>
+					</form>
+			</div>
+        </div>
+	</div>
+</div>
+<script>
+	jQuery(document).ready(function(){
+		var sTO = [null,null,null,null];
+		jQuery('form#reg').click(function(){
+			if( ! /[a-zA-Z][a-zA-Z0-9]{3,15}/.test( jQuery('#username').val() ) ){
+				jQuery('#username').parent().parent().addClass('error');
+				try{clearTimeout( sTO[1] );}catch(e){}
+				sTO[1] = setTimeout(function(){
+					jQuery('#username').parent().parent().removeClass('error');
+				},2000);
+				return false;
+			}
+			if( ! /[a-zA-Z0-9*]{6,15}/.test( jQuery('#password').val()) ){
+				jQuery('#password').parent().parent().addClass('error');
+				try{clearTimeout( sTO[2] );}catch(e){}
+				sTO[2] = setTimeout(function(){
+					jQuery('#password').parent().parent().removeClass('error');
+				},2000);
+				return false;
+			}
+			if( ! /[a-zA-Z0-9\.\-\_]{6,30}\@[a-z0-9\.\-\_]{6,16}\.[a-z]{2,4}/.test( jQuery('#email').val() ) ){
+				jQuery('#email').parent().parent().addClass('error');
+				try{clearTimeout( sTO[3] );}catch(e){}
+				sTO[3] = setTimeout(function(){
+					jQuery('#email').parent().parent().removeClass('error');
+				},2000);
+				return false;
+			}
+			if( ! /1[0-9]{10,11}/.test( jQuery('#mobile').val() ) ){
+				jQuery('#mobile').parent().parent().addClass('error');
+				try{clearTimeout( sTO[0] );}catch(e){}
+				sTO[0] = setTimeout(function(){
+					jQuery('#mobile').parent().parent().removeClass('error');
+				},2000);
+				return false;
+			}
+		});
+	});
+</script>
+</body>
+</html>

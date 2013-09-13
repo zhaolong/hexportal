@@ -1,0 +1,62 @@
+<!--{if !$_G['inajax']}-->
+	<!--{template common/header}-->
+
+	<div class="content">
+		<div class="wrapper page">
+			<div class="page-intro">
+			<h1>提示 Warning</h1>
+			<p class="lead">
+			发现了一箩筐的提示
+			</p>
+			</div>
+		<!--{if !$param[login]}-->
+			<div class="pane">
+		<!--{else}-->
+			<div class="nfl" id="main_succeed" style="display: none">
+				<div class="f_c altw">
+					<div class="alert_right">
+						<p id="succeedmessage"></p>
+						<p id="succeedlocation" class="alert_btnleft"></p>
+						<p class="alert_btnleft"><a id="succeedmessage_href">{lang message_forward}</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="pane" id="main_message">
+		<!--{/if}-->
+<!--{else}-->
+	<!--{template common/header_ajax}-->
+<!--{/if}-->
+<!--{if $param[msgtype] == 1 || $param[msgtype] == 2 && !$_G[inajax]}-->
+		<div id="messagetext" class="alert $alerttype">
+			<span id="succeedlocation"></span>
+			$show_message
+		</div>
+		<button class="btn btn-primary btn-small" onclick="history.back()"><span class="icon icon-info"></span> 回前页</button>
+		<button onclick="location.href='./'" class="btn btn-small"><span class="icon icon-home"></span> 回主页</button>
+<!--{elseif $param[msgtype] == 2}-->
+		<h3 class="flb"><em>{lang board_message}</em><!--{if $_G[inajax]}--><span><a href="javascript:;" class="flbc" onclick="hideWindow('$_GET['handlekey']');" title="{lang close}">{lang close}</a></span><!--{/if}--></h3>
+		<div class="c altw">
+			<div class="$alerttype">$show_message</div>
+		</div>
+		<p class="o pns">
+			<!--{if $param['closetime']}-->
+				<span class="z xg1">$param['closetime'] {lang message_closetime}</span>
+			<!--{elseif $param['locationtime']}-->
+				<span class="z xg1">$param['locationtime'] {lang message_locationtime}</span>
+			<!--{/if}-->
+			<!--{if $param[login]}-->
+				<button type="button" class="pn pnc" onclick="hideWindow('$_GET['handlekey']');showWindow('login', 'member.php?mod=logging&action=login');"><strong>{lang login}</strong></button>
+				<!--{if !$_G['setting']['bbclosed']}-->
+					<button type="button" class="pn pnc" onclick="hideWindow('$_GET['handlekey']');window.open('member.php?mod={$_G[setting][regname]}');"><em>$_G['setting']['reglinkname']</em></button>
+				<!--{/if}-->
+				<button type="button" class="pn" onclick="hideWindow('$_GET['handlekey']');"><em>{lang cancel}</em></button>
+			<!--{elseif !$param['closetime'] && !$param['locationtime']}-->
+				<button type="button" class="pn pnc" id="closebtn" onclick="hideWindow('$_GET['handlekey']');"><strong>{lang confirms}</strong></button>
+				<script type="text/javascript" reload="1">if($('closebtn')) {$('closebtn').focus();}</script>
+			<!--{/if}-->
+		</p>
+<!--{else}-->$show_message<!--{/if}-->
+		</div>
+	</div>
+</div>
+<!--{template common/footer}-->

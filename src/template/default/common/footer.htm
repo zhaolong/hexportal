@@ -1,0 +1,17 @@
+		<script type="text/javascript">
+			jQuery(document).ready(function(){
+				jQuery('a[data-rel]').each(function() {
+					jQuery(this).attr('rel', jQuery(this).data('rel'));
+				});
+				var this_url = "<!--{eval echo substr($_SERVER['REQUEST_URI'],1);}-->";
+				jQuery('.leftmenu .nav li.active').removeClass('active');
+				jQuery('.leftmenu .nav li a[href="' + this_url + '"]').parent().addClass('active');
+				jQuery('a[href="#"]').hover(function(){
+					jQuery(this).attr('href','javascript:void(0);');
+				});
+			});
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000067456'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/q_stat.php%3Fid%3D1000067456' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+</div>
+</body>
+</html>

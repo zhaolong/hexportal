@@ -1,0 +1,94 @@
+{subtemplate common/header}<p>
+        <link type='text/css' rel='stylesheet' href='./source/plugin/host/images/tangram-ui.css'/>
+        <script type="text/javascript" src="./source/plugin/host/images/tangram-dialog.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            function load_dialog() {
+                var options = { 
+                    buttons: {accept: {content: "<div class='tangram-dialog-button-label'>O K</div>", onclick:function(){
+                        dialogInstance.dispatchEvent("onaccept") && dialogInstance.close();
+                    }}},
+                    titleText : "Loading",					
+                    height: "50px",
+                    width : "230px",
+                    modal : true,
+                    modalColor : "#736FB0",
+                    draggable : true,
+                    contentText: "<div class='tangram-dialog-text'>&nbsp;Loading...Please wait...<img src='./source/plugin/host/images/icon_load.gif'></div>",
+                    autoRender: true
+                };
+                dialogInstance = new T.ui.Dialog(options);
+                dialogInstance.open();
+            }
+        </script>
+<style type="text/css">
+.ct2_a .mn {width:770px;}
+.tl {padding:4px 8px;}
+.style13 {color: #FFFFFF}
+.tl table {width:100%;table-layout:auto;}
+.tl input {height:20px;}
+.tl td {padding:8px 12px;}
+.appl {width:155px;margin:8px 0;}
+.pm {height:25px;overflow:hidden;width:80px;}
+.tl td p{padding:2px}
+.style2 {color: #999999}
+.style13 {color: #FFFFFF}
+.style14 {color: #333333}
+.style15 {color: #FFFFFF; font-weight: bold; }
+.style16 {color: #00BB00; font-weight: bold; }
+.style28 {color: #2828FF}
+</style>
+<div id="pt" class="bm cl">
+	<div class="z"><a  onclick="load_dialog();"  href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname] </a> <em>&rsaquo;</em><a  onclick="load_dialog();"  href="./plugin.php?id=host:host"  > DzWHM </a></div>
+</div>
+<div id="ct" class="ct2 wp cl">
+	<div class="mn">
+<div class="bm">
+    <div class="bm_h cl">
+		<h2>$lang[tk]	# $ticketid</h2>
+	</div>
+	<table width="100%"  border="0" class="tfm">
+		<tr>
+			<td bgcolor="#E0E0E0" width="25%" height="20"><div align="center"><b>Date</b></div></td>
+            <td bgcolor="#E0E0E0" width="25%" height="20"><div align="center"><b>Username</b></div></td>
+			<td bgcolor="#E0E0E0" width="25%" height="20"><div align="center"><b>$lang[statues]</b></div></td>
+            <td bgcolor="#E0E0E0" width="25%" height="20"><div align="center"><b>$lang[urgency]</b></div></td>
+		</tr> 
+		<tr>
+			<td width='25%'><div align="center">$array[time_s]</div></td>
+			<td width='25%'><div align="center">$array[user]</div></td>
+			<td width='25%'><div align="center">$array[status]</div></td>
+			<td width='25%'><div align="center">$array[urgency]</div></td>
+		</tr> 
+	</table>
+</div>
+<p>&nbsp;</p>	
+<!--{loop $Data $F}--> 
+	<table width="100%"  border="1" BORDERCOLOR=GREY class="tfm">
+		<tr>
+			<td bgcolor="#F0F0F0"><b>$F[user]</b><div style="float:right">$F[time_s]</div></td>
+		</tr> 
+		<tr>
+			<td bgcolor="#FFFFFF"> $F[content]</td>
+		</tr> 
+	</table>
+<p>&nbsp;</p>
+<!--{/loop}-->
+<form id="form3" name="form3" method="post" action=''>
+<div class="bm">
+    <div class="bm_h cl">
+		<h2>$lang[reply]</h2>
+	</div>
+	<table width="100%"  border="0" class="tfm"> 
+		<tr>
+			<td><textarea rows="12" cols="100" id="biomessage" name="content" class="textarea" ></textarea></td>
+		</tr> 
+		<tr>
+			<td><button type="submit" class="pn vm" name="submit" onclick="load_dialog();"><em>$lang[submit]</em></button></td>
+		</tr>
+	</table>
+</div>
+</form>
+</div>
+{template host:sidebar}
+</div>
+{subtemplate common/footer}

@@ -1,0 +1,37 @@
+{subtemplate common/header}<p>
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="$_G[setting][bbname]">$_G[setting][bbname]</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host" >DzWHM</a><em>&rsaquo;</em>
+		<a href="./plugin.php?id=host:host&panel=admin&type=home" >$lang[admin_panel]</a>
+	</div>
+</div>
+<div id="ct" class="ct2 wp cl">
+<div class="mn">
+<table width="100%" class="tfm" cellspacing="0" cellpadding="0">
+	<tr>
+		<h2><div class="bm_h cl"><span style="float:left">$lang[userstat]</span></div></h2>
+	</tr>
+    <tr>
+		<td width="50%" bgcolor="#E0E0E0"><div align="center"><b>$lang[applied_stat]</b></div></td>
+		<td><div align="center">$tuser</div></td>
+    </tr>	
+    <tr>
+		<td bgcolor="#E0E0E0"><div align="center"><b>$lang[sctived_stat]</b></div></td>
+		<td><div align="center">$auser</div></td>
+    </tr>						  						
+    <tr>
+		<td bgcolor="#E0E0E0"><div align="center"><b>$lang[inactive_stat]</b></div></td>
+		<td><div align="center">$iuser </div></td>
+    </tr>
+    <tr>
+		<td bgcolor="#E0E0E0"><div align="center"><b>$lang[inactive_stat]</b></div></td>
+		<td><div align="center">$suser</div></td>
+    </tr>
+</table>
+</div>
+{template host:admin_sidebar}
+</div>
+</div>
+
+{subtemplate common/footer}

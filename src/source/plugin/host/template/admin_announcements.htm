@@ -1,0 +1,92 @@
+{subtemplate common/header}
+<div class="pagetitle">
+	<h1>管理中心_主机</h1> <span>主机...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner">
+		<div class="span10">
+			<h4 class="widgettitle">管理中心_主机</h4>
+			<div class="widgetcontent">
+				<div id="tabs" class="tabs">
+					<ul>
+						<li><a href="#manage">管理<!--{if $_GET['action'] =='manage'}--> # $array6[plan]<!--{/if}--></a></li>
+						<li><a href="#add">新增</a></li>
+					</ul>
+					<div id="manage">
+						<!--{if $_GET['action']=="manage"&&$_GET['id']&&$F}-->
+						<form action="plugin.php?id=host:host&panel=admin&type=notice&action=manage&no=$_GET['no']" method="POST">
+							<table width="100%"  class="tfm">
+								<tr>
+									<td bgcolor="#E0E0E0"height="22"><b>$lang[title]</b></td>
+									<td bgcolor="#E0E0E0" ><input type="text" name="title" value="$F['title']" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td bgcolor="#EEEEEE"height="22"><b>$lang[time_]</b></td>
+									<td bgcolor="#EEEEEE" ><input type="text" name="time" value="$F['time']" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td>$lang[content]</td>
+									<td><textarea name="content" class="pt" cols="50" rows="10">$F['content']</textarea></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="3">
+										<button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button>
+										<button type="reset" class="pn vm" name="submit2"><em>$lang[reset_]</em></button>
+									</td>
+								</tr>
+							</table>
+						</form>
+						<!--{/if}-->
+
+						<table width="100%" class="tfm">
+							<tr>
+								<td bgcolor="#E0E0E0" width="25%"><div align="center"><b>ID</b></div></td>
+								<td bgcolor="#E0E0E0" width="15%"><div align="center"><b>$lang[title]</b></div></td>
+								<td bgcolor="#E0E0E0" width="15%"><div align="center"><b>$lang[action]</b></div></td>
+							</tr>
+						<!--{if !$check}-->
+							<tr>
+								<td colspan="3"><div align="center">$lang[not_set_announcement]</div></td>
+							</tr> 	
+						<!--{/if}-->
+						<!--{loop $Data $F}--> 
+							<tr>
+								<td><div align="center">$F[id]</div></td>
+								<td><div align="center">$F[title]</div></td>
+								<td><div align="center"><a href="plugin.php?id=host:host&panel=admin&type=announcements&action=manage&no=$F[id]"><font color="#FF0000">$lang[edit]</font></a> | <a href="plugin.php?id=host:host&panel=admin&type=announcements&action=delete&no=$F[id]"><font color="#FF0000">$lang[del]</font></a></div>
+							</tr> 
+						<!--{/loop}-->
+						</table>
+					</div>
+					<div id="add">
+						<form action="./plugin.php?id=host:host&panel=admin&type=addnotice" method="POST">
+							<table width="100%"  class="tfm">
+								<tr>
+									<td bgcolor="#E0E0E0"height="22"><b>$lang[title]</b></td>
+									<td bgcolor="#E0E0E0" ><input type="text" name="title" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td>$lang[content]</td>
+									<td><textarea name="content" class="pt" cols="50" rows="10"></textarea></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="3">
+										<button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button>
+										<button type="reset" class="pn vm" name="submit2"><em>$lang[reset_]</em></button>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="span2">
+			{template host:admin_sidebar}
+		</div>
+	</div>
+</div>
+
+{subtemplate common/footer}

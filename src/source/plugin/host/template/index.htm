@@ -1,0 +1,85 @@
+{subtemplate common/header}
+<style>
+	.hilight-total{
+		color: #fea754;
+		font-size: 24px;
+		font-weight: bold;
+		font-family: 'Arial';
+		display: inline-block;
+		padding: 0 0 0 10px;
+	}
+	.hilight-total:hover{
+		color: #fea754;
+	}
+</style>
+		<div class="content" style="">
+			<div class="wrapper dashboard">
+				<div id="zone" class="grid_6">
+					<h1><strong>hexdata</strong></h1>
+				</div>
+				<div class="grid_18 dashboard-account">
+					<div class="charge">
+						运行主机:<a class="<!--{if $array_all['count'] > 0 }-->balance<!--{else}-->hilight<!--{/if}-->-total" href="plugin.php?id=host:host&page=myhost" target="_self">$array_all['count']</a><span class="unit">台</span> 即将过期:<a class="<!--{if $array_will_expire['exp_count'] > 0 }-->hilight<!--{else}-->balance<!--{/if}-->-total" href="plugin.php?id=host:host&page=myhost" target="_self">$array_will_expire['exp_count']</a><span class="unit">台</span> 账户余额:<a class="balance-total" href="plugin.php?id=host:host&page=pay" target="_self">$array[extcredits4]</a><span class="unit">元</span>
+					</div>
+				</div>
+				<div id="resource_summary">
+					<div class="grid_6 resource-summary-item" data-type="instance" onclick="location.href='plugin.php?id=host:host&page=myhost';">
+						<strong>{$array_all[count]}</strong>
+						<h5><span class="icon-instance"></span>主机</h5>
+					</div>
+					<div class="grid_6 resource-summary-item" data-type="images">
+						<strong>0</strong>
+						<h5><span class="icon-images"></span>镜像</h5>
+					</div>
+					<div class="grid_6 resource-summary-item" data-type="security_group">
+						<strong>0</strong>
+						<h5><span class="icon-security_group"></span>防火墙</h5>
+					</div>
+					<div class="grid_6 resource-summary-item" data-type="tickets" onclick="location.href='plugin.php?id=host:host&page=tickets';">
+						<strong><!--{eval $row = mysql_fetch_array(DB::query("SELECT count(ticketid) as how FROM host_tickets WHERE user = 'admin' AND status = '管理员回复' AND ttype = 'post' LIMIT 0, 99"));echo $row['how'];}--></strong>
+						<h5><span class="icon-tickets"></span>工单</h5>
+					</div>
+				</div>
+				<div id="activity" class="grid_12 dashboard-activity">
+					<h4><a href="#" data-permalink="">最近操作</a></h4>
+					<div class="inner">
+						<p class="none">
+							操作记录功能正在开发中
+						</p>
+						<!--
+						<div class="activity-item">
+							<span href="#" class="icon icon-action icon-TerminateInstances"><span class="arrow"></span></span><span class="message">Stop ECS</span><span class="created"><span class="icon icon-time"></span>&nbsp; 2013-09-01 9:30:15</span><span class="consumed"><span class="icon icon-consumed"></span>&nbsp; 13秒</span>
+						</div>
+						<div class="activity-item">
+							<span href="#" class="icon icon-action icon-question"><span class="arrow"></span></span><span class="message">Reply Ticket</span><span class="created"><span class="icon icon-time"></span>&nbsp; 2013-09-01 9:28:46</span><span class="consumed"><span class="icon icon-consumed"></span>&nbsp; 1秒</span>
+						</div>
+						-->
+					</div>
+				</div>
+				<div id="ticket" class="grid_12">
+					<h4><a href="#" data-permalink="">最新问题</a></h4>
+					<div class="inner">
+						<!--{if $array_tks}-->
+							<!--{loop $array_tks $_F}-->
+								<div class="ticket-item">
+									<a href="plugin.php?id=host:host&page=chat#ticketid=$_F['ticketid']"><span class="icon icon-action icon-question"></span><span class="message"><!--{eval echo $_F['title']?$_F['title']:$_F['content']}--></span></a>
+								</div>
+								 
+							<!--{/loop}-->
+						<!--{else}-->
+							<p class="none">
+								目前没有工单
+							</p>
+						<!--{/if}-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="notify" style="">
+		</div>
+
+        <script type="text/javascript">
+		jQuery(document).ready(function(){
+		});
+        </script>
+{subtemplate common/footer}

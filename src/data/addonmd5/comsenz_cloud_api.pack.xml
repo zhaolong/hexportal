@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Addon MD5]]></item>
+	<item id="ID"><![CDATA[comsenz_cloud_api.pack]]></item>
+	<item id="RevisionID"><![CDATA[8667]]></item>
+	<item id="SN"><![CDATA[20130223165De5L5SDKD]]></item>
+	<item id="RevisionDateline"><![CDATA[1354072117]]></item>
+	<item id="Data">
+		<item id="/api/manyou/Service/Client/ConnectOAuth.php"><![CDATA[fab66524a0dd2175ee6337912c8a2f30]]></item>
+		<item id="/api/manyou/Service/Client/OAuth.php"><![CDATA[9af664c7d6f29735efe182c56cfc2aa3]]></item>
+	</item>
+</root>

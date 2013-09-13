@@ -1,0 +1,367 @@
+{subtemplate common/header}
+<script src="static/js/chosen.jquery.min.js"></script>
+<div class="pagetitle">
+	<h1>申请表</h1> <span>请完成申请表,请务必认真选择,如有异议请参靠我们的TOS...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner">
+			<div class="widgetcontent">                	
+                    <!-- START OF TABBED WIZARD -->
+                    <form class="stdform" method="post" action="plugin.php?id=host:host&page=save">
+                    <div id="wizard2" class="wizard tabbedwizard">
+
+                    <div class="stepContainer" style="height: 211px; ">
+						<div id="wiz1step2_1" class="formwiz content" style="display: block; ">
+                        	<h4>申请信息</h4>
+							<p>
+								<label>云方案</label>
+								<span class="formwrapper">
+									<select data-placeholder="选择想买的云(选择后可以自定义)..." style="width:350px" class="chzn-select" tabindex="1" id="plan" data-xxoo="">
+										<option value=""  data-xx-oo="{'cpu':'1','mem':'512','dataspace':'0','traffic':'1'}" >选择想买的云(选择后可以自定义)...</option> 
+										<!--{loop $Data $F}-->
+										<option value="$F[id]" data-xx-oo="{'cpu':'$F['cpu']','mem':'$F['memory']','dataspace':'$F['dataspace']','traffic':'$F['traffic']'}" <!--{if $array1[id]==$F[id]}-->selected="selected" <!--{/if}-->>$F[plan]</option>
+										<!--{/loop}-->
+									 </select>
+								</span>
+							</p>
+
+								<p>
+                                    <label>CPU</label>
+                                    <span class="field">
+										<span id="cpu_slider" style="width:350px;"></span><span id="cpu_span" style="">1核</span>
+										<script>
+											jQuery("#cpu_slider").slider({
+													range: "min",
+													value: 1,
+													min: 1,
+													max: 8//,
+													//slide: 
+											});
+										</script>
+									</span>
+                                </p>                                
+                
+								<p>
+                                    <label>内存</label>
+                                    <span class="field">
+										<span id="mem_slider" style="width:350px;"></span><span id="mem_span" style="">512MB</span>
+										<script>
+											jQuery("#mem_slider").slider({
+													range: "min",
+													value: 512,
+													min: 512,
+													step: 512,
+													max: 4*1024/*,//32768,
+													slide: function( event, ui ) {
+														if(ui.value>2*1024&&ui.value<4*1024){
+															jQuery("#mem_slider").slider({value:4*1024});
+															jQuery("#mem_span").text("4GB");
+															return false;
+														}
+														jQuery("#mem_span").text((ui.value>=1024?(ui.value/1024+"GB"):(ui.value+"MB")));
+													}*/
+											});
+										</script>
+									</span>
+                                </p>                                
+                
+								<p>
+                                    <label>数据盘</label>
+                                    <span class="field">
+										<span id="disk_slider" style="width:350px;"></span><span id="disk_span" style="">20GB</span>
+										<script>
+											jQuery("#disk_slider").slider({
+													range: "min",
+													value: 20,
+													min: 0,
+													step: 10,
+													max: 2000,
+													slide: function( event, ui ) {
+														jQuery("#disk_span").text(ui.value+"GB");
+													}
+											});
+										</script>
+									</span>
+                                </p>                                
+
+								<p>
+                                    <label>带宽</label>
+                                    <span class="field">
+										<span id="bd_slider" style="width:350px;"></span><span id="bd_span" style="">1mbps</span>
+										<script>
+											jQuery("#bd_slider").slider({
+													range: "min",
+													value: 1,
+													min: 1,
+													max: 200,
+													slide: function( event, ui ) {
+														jQuery("#bd_span").text(ui.value+"mbps");
+													}
+											});
+										</script>
+									</span>
+                                </p>                                
+								<p>
+									<label>操作系统</label>
+									<span class="formwrapper">
+										<select data-placeholder="请选择您想要的操作系统..." style="width:350px" class="chzn-select" tabindex="1" id="os">
+                                          <option value="">请选择您想要的操作系统...</option>
+										  <option value="centos5.4_32bit">centos5.4_32位</option>
+										  <option value="centos5.7_64bit">centos5.7_64位</option>
+										  <option value="centos5.8_64bit">centos5.8_64位</option>
+										  <option value="centos6.3_64bit">centos6.3_64位</option>
+										  <option value="debian6.0.3_64bit">debian6.0.3_64位</option>
+										  <option value="debian6.0.6_64bit">debian6.0.6_64位</option>
+										  <option value="ubuntu10.10_64bit">ubuntu10.10_64位</option>
+										  <option value="ubuntu12.04_64bit">ubuntu12.04_64位</option>
+										  <option value="redhat5.4_64bit">redhat5.4_64位</option>
+										  <option value="redhat5.7_64bit">redhat5.7_64位</option>
+										</select>
+									</span>
+								</p>
+								<p>
+									<label>机房</label>
+									<span class="formwrapper">
+										<select data-placeholder="请选择您想要购买的云的位置..." style="width:350px" class="chzn-select" tabindex="1" id="datacenter">
+										<option value="">请选择您想要购买的云的位置...</option>
+										<option value="hangzhou_bgp">杭州BGP</option>
+										<option value="qingdao_bgp">青岛BGP</option>
+										</select>
+									</span>
+								</p>
+								<p>
+									<label>购买周期</label>
+									<span class="formwrapper">
+										<select data-placeholder="1" style="width:250px" class="chzn-select" tabindex="1" id="during">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+										</select>
+										<select data-placeholder="月" style="width:100px" class="chzn-select" tabindex="1" id="term">
+											<option value="mon">月</option>
+											<option value="yr">年</option>
+										</select>
+									</span>
+								</p>
+								<p>
+									<label>价格</label>
+									<p id="span_price" style="font-size:14px;font-family:microsoft yahei;">价格计算中...</p>
+								</p>
+								<p>
+									<label>需支付</label>
+									<p id="need_pay" style="font-size:27px;font-family:microsoft yahei;">计算中...</p>
+								</p>
+								<p class="stdformbutton">
+									<button class="btn btn-primary btn-submit">Submit</button>
+									<button type="reset" class="btn">Cancel</button>
+								</p>
+								<p style="display:none">
+									<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+									<input type="hidden" name="month_holder" id="month_holder" value="69">
+									<input type="hidden" name="year_holder" id="year_holder" value="690">
+								</p>
+							</div>
+						</div><!--#wizard-->
+                    </form>
+			</div>
+			</div>
+	</div>
+</div>
+<script>
+	jQuery(document).ready(function(){
+		// Smart Wizard 	
+      	//jQuery('#wizard2').smartWizard({onFinish: onFinishCallback});
+		function onFinishCallback(){
+			jQuery(this).attr('disabled','disabled');
+			var postAction="./plugin.php?id=host:host\x26page=apply\x26plan_id=$array1[id]";
+			var postData="plan="+jQuery('#plan').val()+"&os="+jQuery('#plan').val()+"&os="+jQuery('#os').val()+"&datacenter="+jQuery('#datacenter').val()+"&term="+jQuery('#term').val()+"&name="+jQuery('#name').val()+"&mobile="+jQuery('#telephone').val()+"&agree="+jQuery('#tos').val()+"&submit=hexdata";
+			if(postData.indexOf('=&')>-1){
+				jAlert('请填写完成申请表','和谐数据');return false;
+			}
+			jQuery.post(postAction,postData,function(r){
+				eval('r='+r);
+				if(r.msg=="OK"&&r.code==200){
+					jAlert('恭喜您申请成功，您需要等待最多12小时\r\n人工审核后方可使用云主机','和谐数据');setTimeout(function(){location.href="./plugin.php?id=host:host&page=myhost";},20000);
+				}else{
+					jAlert('申请失败，错误代码'+r.msg,'和谐数据');
+				}
+				jQuery(this).attr('disabled','false');
+				return false;
+			});
+		}		
+		jQuery(".inline").colorbox({inline:true, width: '60%', height: '500px'});
+		jQuery("#uname").html("$_G['username']");
+		jQuery(".chzn-select").chosen();
+		jQuery('#plan').change(function(){
+			setTimeout(function(){
+				eval('var data='+jQuery('#plan option[value="'+jQuery('#plan').val()+'"]').attr('data-xx-oo'));
+				jQuery("#cpu_slider").slider({value:data.cpu});
+				setTimeout(function(){
+					jQuery("#mem_slider").slider({value:data.mem});
+					//console.log(data.mem);
+				},100);
+				jQuery("#disk_slider").slider({value:data.dataspace});
+				jQuery("#bd_slider").slider({value:data.traffic});
+			},100);
+		});
+		jQuery( "#cpu_slider" ).on( "slidechange", function( event, ui ) {
+			//console.log(ui.value);
+			if(ui.value==3){
+				jQuery("#cpu_slider").slider({value:4});
+				jQuery("#cpu_span").text("4核");
+				jQuery("#mem_span").html('4GB');
+				jQuery("#mem_slider").slider( "destroy" ).slider({
+					range: "min",
+					value: 4*1024,
+					min: 4*1024,
+					step: 4*1024,
+					max: 16*1024
+					});
+				return false;
+			}else if(ui.value>4&&ui.value<8){
+				jQuery("#cpu_slider").slider({value:8});
+				jQuery("#cpu_span").text("8核");
+				jQuery("#mem_span").html('8GB');
+				jQuery("#mem_slider").slider( "destroy" ).slider({
+					range: "min",
+					value: 8*1024,
+					min: 8*1024,
+					step: 4*1024,
+					max: 32*1024
+				});
+				return false;
+			}
+			//jQuery("#mem_slider").unbind();
+			switch(ui.value){
+				case 1:
+					jQuery("#mem_span").html('512MB');
+					jQuery("#mem_slider").slider( "destroy" ).slider({
+						range: "min",
+						value: 512,
+						min: 512,
+						step: 512,
+						max: 4*1024
+					});
+					break;
+				case 2:
+					jQuery("#mem_span").html('1.5GB');
+					jQuery("#mem_slider").slider( "destroy" ).slider({
+						range: "min",
+						value: 1.5*1024,
+						min: 1.5*1024,
+						step: 512,
+						max: 8*1024
+					});
+					break;
+				case 4:
+					jQuery("#mem_span").html('4GB');
+					jQuery("#mem_slider").slider( "destroy" ).slider({
+						range: "min",
+						value: 4*1024,
+						min: 4*1024,
+						step: 4*1024,
+						max: 16*1024
+					});
+					break;
+				case 8:
+					jQuery("#mem_span").html('8GB');
+					jQuery("#mem_slider").slider( "destroy" ).slider({
+						range: "min",
+						value: 8*1024,
+						min: 8*1024,
+						step: 4*1024,
+						max: 32*1024
+					});
+					break;
+			}
+			jQuery("#cpu_span").text(ui.value+"核");
+		});
+		jQuery( "#mem_slider" ).ready(function(){
+			jQuery( "#mem_slider" ).on( "slidechange", function( event, ui ) {
+				setTimeout(function(){
+					var a=jQuery('#mem_slider').slider('value');
+					//console.log(a);
+					if(a>16*1024&&a<24*1024){
+						jQuery("#mem_slider").slider({value:24*1024});
+						jQuery("#mem_span").text("24GB");
+						return false;
+					}else if(a>2.5*1024&&a<4*1024){
+						jQuery("#mem_slider").slider({value:4*1024});
+						jQuery("#mem_span").text("4GB");
+						return false;
+					}else if(a>4*1024&&a<8*1024){
+						jQuery("#mem_slider").slider({value:8*1024});
+						jQuery("#mem_span").text("8GB");
+						return false;
+					}else if(a>2*1024&&a<4*1024&&jQuery('#cpu_slider').slider('value')===1){
+						jQuery("#mem_slider").slider({value:4*1024});
+						jQuery("#mem_span").text("4GB");
+						return false;
+					}else if(a>16*1024&&a<24*1024){
+						jQuery("#mem_slider").slider({value:24*1024});
+						jQuery("#mem_span").text("24GB");
+						return false;
+					}else if(a>24*1024&&a<32*1024){
+						jQuery("#mem_slider").slider({value:32*1024});
+						jQuery("#mem_span").text("32GB");
+						return false;
+					}
+					jQuery("#mem_span").text(((a>1024)?(a/1024+"GB"):(a+"MB")));
+				},200);
+			});
+		});
+		jQuery("#disk_slider").on( "slidechange", function( event, ui ) {
+			jQuery("#disk_span").text(ui.value+"GB");
+		});
+		jQuery("#bd_slider").on( "slidechange", function( event, ui ) {
+			jQuery("#bd_span").text(ui.value+"Mbps");
+		});
+		jQuery("[id$='slider']").on( "slidechange", function( event, ui ) {
+			jQuery('#span_price').html("价格计算中...");
+			jQuery('#need_pay').html("计算中...");
+			setTimeout(function(){
+				jQuery.get('plugin.php?id=host:host&page=api&action=getPrice&cpu='+jQuery('#cpu_slider').slider('value')+'&mem='+jQuery('#mem_slider').slider('value')+'&storage='+jQuery('#disk_slider').slider('value')+'&bandwidth='+jQuery('#bd_slider').slider('value')+'',function(a){
+					eval("var a="+a);
+					jQuery('#month_holder').val(a.month);
+					jQuery('#year_holder').val(a.year);
+					jQuery('#span_price').html("月付"+a.month+"元 年付"+a.year+"元");
+					jQuery('#need_pay').html((jQuery('#term').val()=="mon"?(jQuery('#month_holder').val()+"元/月"+" x "+jQuery('#during').val()+"月 = "+parseInt(jQuery('#month_holder').val())*parseInt(jQuery('#during').val())+"元" ):(jQuery('#year_holder').val()+"元/年"+" x "+jQuery('#during').val()+"年 = "+parseInt(jQuery('#year_holder').val())*parseInt(jQuery('#during').val())+"元")));
+				})
+			},300);
+		});
+		jQuery('#term,#during').change(function(){
+			jQuery('#need_pay').html((jQuery('#term').val()=="mon"?(jQuery('#month_holder').val()+"元/月"+" x "+jQuery('#during').val()+"月 = "+parseInt(jQuery('#month_holder').val())*parseInt(jQuery('#during').val())+"元" ):(jQuery('#year_holder').val()+"元/年"+" x "+jQuery('#during').val()+"年 = "+parseInt(jQuery('#year_holder').val())*parseInt(jQuery('#during').val())+"元")));
+		});
+		jQuery('.btn-submit').click(function(){
+			jQuery.post('plugin.php?id=host:host&page=save','action=new&cpu='+jQuery('#cpu_slider').slider('value')+'&mem='+jQuery('#mem_slider').slider('value')+'&storage='+jQuery('#disk_slider').slider('value')+'&bandwidth='+jQuery('#bd_slider').slider('value')+'&os='+jQuery('#os').val()+"&datacenter="+jQuery('#datacenter').val()+"&during="+jQuery('#during').val()+"&term="+jQuery('#term').val(),function(data){
+				a = data.split('|')[0];
+				if( a == "1" ){
+					order_id = data.split('|')[1];
+					//Success
+					jAlert('下订单(' + order_id + ')成功！点击确定进入订单支付页面','hexPanel',function(){
+						location.href = "plugin.php?id=host:host\x26page=vieworder\x26order_id=" + order_id;
+					});
+				}else if( a == "-3" ){
+					//Need Complete order form
+					jAlert('表格未完成！请完成表单','hexPanel');
+				}else if( a == "-4" ){
+					//Amount orderdue
+					jAlert('余额不足','hexPanel');
+				}
+			});
+			return false;
+		});
+		
+		setTimeout(function(){
+			jQuery('#plan').change();
+		},500);	
+		
+	});
+</script>
+{subtemplate common/footer}

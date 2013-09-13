@@ -1,0 +1,115 @@
+{subtemplate common/header}
+<div class="pagetitle">
+	<h1>管理优惠码</h1> <span>主机...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner">
+		<div class="span10">
+			<h4 class="widgettitle">管理优惠码</h4>
+			<div class="widgetcontent">
+				<div id="tabs" class="tabs">
+					<ul>
+						<li><a href="#manage">管理<!--{if $_GET['action'] =='manage'}--> # $array6[plan]<!--{/if}--></a></li>
+						<li><a href="#add">新增</a></li>
+					</ul>
+					<div id="manage">
+						<!--{if $_GET['action']=="manage"&&$_GET['id']&&$F}-->
+						<form action="plugin.php?id=host:host&panel=admin&type=coupon&action=manage&no=$_GET['no']" method="POST">
+							<table width="100%"  class="tfm">
+								<tr>
+									<td bgcolor="#E0E0E0"height="22"><b>券</b></td>
+									<td bgcolor="#E0E0E0" ><input type="text" name="code" value="$F['code']" disabled readonly style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td bgcolor="#EEEEEE"height="22"><b>开始时间</b></td>
+									<td bgcolor="#EEEEEE" ><input type="text" name="create_time" value="$F['create_time']" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td bgcolor="#EEEEEE"height="22"><b>结束时间</b></td>
+									<td bgcolor="#EEEEEE" ><input type="text" name="expire_time" value="$F['expire_time']" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td bgcolor="#EEEEEE"height="22"><b>使用次数限制</b></td>
+									<td bgcolor="#EEEEEE" ><input type="text" name="limit" value="$F['limit']" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td bgcolor="#EEEEEE"height="22"><b>已用次数</b></td>
+									<td bgcolor="#EEEEEE" ><input type="text" name="used" value="$F['used']" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td bgcolor="#EEEEEE"height="22"><b>剩余可用次数</b></td>
+									<td bgcolor="#EEEEEE" ><input type="text" name="canuse" value="$F['canuse']" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td>描述</td>
+									<td><textarea name="note" class="pt" cols="50" rows="10">$F['note']</textarea></td>
+								</tr>
+								<tr>
+									<td>算法</td>
+									<td><textarea name="algor" class="pt" cols="50" rows="10">$F['algor']</textarea></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="3">
+										<button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button>
+										<button type="reset" class="pn vm" name="submit2"><em>$lang[reset_]</em></button>
+									</td>
+								</tr>
+							</table>
+						</form>
+						<!--{/if}-->
+
+						<table width="100%" class="tfm">
+							<tr>
+								<td bgcolor="#E0E0E0" width="15%"><div align="center"><b>ID</b></div></td>
+								<td bgcolor="#E0E0E0" width="15%"><div align="center"><b>券</b></div></td>
+								<td bgcolor="#E0E0E0" width="25%"><div align="center"><b>开始/结束时间</b></div></td>
+								<td bgcolor="#E0E0E0" width="35%"><div align="center"><b>描述</b></div></td>
+							</tr>
+						<!--{if !$check}-->
+							<tr>
+								<td colspan="3"><div align="center">管理员还没有添加优惠码？？</div></td>
+							</tr> 	
+						<!--{/if}-->
+						<!--{loop $Data $F}--> 
+							<tr>
+								<td><div align="center">$F[id]</div></td>
+								<td><div align="center">$F[code]</div></td>
+								<td><div align="center" title="<!--{eval echo "开始:".date('Y/m/d/ H:i:s',strtotime($F['create_time']));echo " 结束:".date('Y/m/d H:i:s',strtotime($F[expire_time]));}-->"><!--{eval echo date('Y/m/d|',strtotime($F['create_time']));echo date('Y/m/d',strtotime($F[expire_time]));}--></div></td>
+								<td><div align="center">$F[note]</div></td>
+								<td><div align="center"><a href="plugin.php?id=host:host&panel=admin&type=coupon&action=manage&no=$F[id]"><font color="#FF0000">$lang[edit]</font></a> | <a href="plugin.php?id=host:host&panel=admin&type=coupon&action=disable&no=$F[id]"><font color="#FF0000">$lang[del]</font></a></div>
+							</tr> 
+						<!--{/loop}-->
+						</table>
+					</div>
+					<div id="add">
+						<form action="./plugin.php?id=host:host&panel=admin&type=addnotice" method="POST">
+							<table width="100%"  class="tfm">
+								<tr>
+									<td bgcolor="#E0E0E0"height="22"><b>$lang[title]</b></td>
+									<td bgcolor="#E0E0E0" ><input type="text" name="title" style="font-family: Verdana; font-size: 9pt" class="px" /></td>
+								</tr>
+								<tr>
+									<td>$lang[content]</td>
+									<td><textarea name="content" class="pt" cols="50" rows="10"></textarea></td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td colspan="3">
+										<button type="submit" class="pn vm" name="submit"><em>$lang[submit]</em></button>
+										<button type="reset" class="pn vm" name="submit2"><em>$lang[reset_]</em></button>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="span2">
+			{template host:admin_sidebar}
+		</div>
+	</div>
+</div>
+
+{subtemplate common/footer}

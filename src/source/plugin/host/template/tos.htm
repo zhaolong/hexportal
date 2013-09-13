@@ -1,0 +1,36 @@
+{subtemplate common/header}
+
+<div class="pagetitle">
+	<h1>服务条款</h1> <span>查看和谐数据最新的服务条款...</span>
+</div>
+<div class="maincontent">
+	<div class="contentinner">
+		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			一旦您使用我们的产品与服务,即表示您已阅读并理解我们的服务条款.
+		</div>
+
+		<div class="widgetcontent">
+			<!--{if (!$arrayx[value])}-->
+			<table width="100%"  border="0" class="tfm"> 
+				<tr>
+					<td> 尚未设置服务条款</td>
+				</tr>
+			</table>
+			<!--{else}-->
+			<table width="100%"  border="0" class="tfm"> 
+				<tr>
+					<td> $arrayx[value]</td>
+				</tr>
+			</table>
+			<!--{/if}-->
+		</div>
+	</div>
+</div>
+<script>
+jQuery(document).ready(function(){
+	jQuery("#uname").html("$_G['username']");
+});
+</script>
+
+{subtemplate common/footer}

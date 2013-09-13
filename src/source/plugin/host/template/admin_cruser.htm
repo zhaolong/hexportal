@@ -1,0 +1,105 @@
+{subtemplate common/header}
+<style>
+.w60{
+	width:80px;
+	width:80px !important;
+}
+</style>
+<div class="content">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>管理主机 administration ecs</h1>
+			<p class="lead">管理所有主机</p>
+		</div>
+		<div class="pane">
+			<div class="widgetcontent">
+			<form action="./plugin.php?id=host:host&panel=admin&type=activeuser&hid=$hid&action=create" method="POST">
+				<table class="table table-bordered">
+					<colgroup>
+						<col class="con0">
+						<col class="con1">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>属性</th>
+							<th>值</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>主机编号</b></td>
+							<td><input type="text" value="$array['domain']" name="hostid" id="hostid"></td>
+						</tr>
+						<tr>
+							<td width="20%" bgcolor="#F0F0F0"><b>UID</b></td>
+							<td><input type="text" value="$array[uid]" name="uid" id="uid"></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>方案</b></td>
+							<td><input type="text" value="$array[plan]" name="plan" id="plan"></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>VMID</b></td>
+							<td><input type="text" value="$array[vmid]" name="vmid" id="vmid"></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>$lang[statues]</b></td>
+							<td><select name="status" id="status"><option value="active" <!--{if $array[status]=="active"}-->selected="selected"<!--{/if}-->>Active</option><option value="inactive" <!--{if $array[status]=="inactive"}-->selected="selected"<!--{/if}-->>Inactive</option></select></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>机房</b></td>
+							<td><select name="datacenter" id="datacenter"><option value="hangzhou_bgp" <!--{if $array[datacenter]=="hangzhou_bgp"}-->selected="selected"<!--{/if}-->>hangzhou_bgp</option><option value="qingdao_bgp" <!--{if $array[datacenter]=="qingdao_bgp"}-->selected="selected"<!--{/if}-->>qingdao_bgp</option></select></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>操作系统</b></td>
+							<td><input type="text" value="$array[os]" name="os" id="os"></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>公网IP</b></td>
+							<td><input type="text" value="$array[publicIp]" name="publicIp" id="publicIp"></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>内网IP</b></td>
+							<td><input type="text" value="$array[lanIp]" name="lanIp" id="lanIp"></td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b>主机配置</b></td>
+							<td><!--{eval $conf = json_decode( $array['confData'], true ); /*print_r($conf);*/}-->CPU<select name="cpu" id="cpu" class="w60">
+										<option value="1">1核</option>
+										<option value="2">2核</option>
+										<option value="4">4核</option>
+										<option value="8">8核</option>
+									</select> 内存<select name="mem" id="mem" class="w60">
+										<option value="512">512M</option>
+										<option value="1024">1G</option>
+										<option value="1536">1.5G</option>
+										<option value="2048">2G</option>
+										<option value="2560">2.5G</option>
+										<option value="4096">4G</option>
+										<option value="8192">8G</option>
+										<option value="12288">12G</option>
+										<option value="16384">16G</option>
+										<option value="24576">24G</option>
+										<option value="32768">32G</option>
+									</select> 带宽<input type="text" name="bandwidth" id="bandwidth" class="w60" value="{$conf['bandwidth']}" /> 磁盘<input type="text" name="storage" id="storage" class="w60" value="{$conf['storage']}" />
+
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#F0F0F0"><b></b></td>
+							<td><input type="submit" class="btn btn-primary" value="保存"></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+<script>
+jQuery(document).ready(function(){
+	jQuery('select#cpu option[value="{$conf['cpu']}"]').attr('selected','selected');
+	jQuery('select#mem option[value="{$conf['mem']}"]').attr('selected','selected');
+});
+</script>
+{subtemplate common/footer}

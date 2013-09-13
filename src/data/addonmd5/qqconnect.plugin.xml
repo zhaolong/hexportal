@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Addon MD5]]></item>
+	<item id="ID"><![CDATA[qqconnect.plugin]]></item>
+	<item id="RevisionID"><![CDATA[923]]></item>
+	<item id="SN"><![CDATA[2013022316goKELkeg7m]]></item>
+	<item id="RevisionDateline"><![CDATA[1354071468]]></item>
+	<item id="Data">
+		<item id="/connect/connect_check.php"><![CDATA[67d885899f5f8b212fdfd68b1ab3a20d]]></item>
+		<item id="/connect/connect_config.php"><![CDATA[e65da0a0fa3fc33ef261c7c8a459ab2a]]></item>
+		<item id="/connect/connect_feed.php"><![CDATA[eea92aa8350ab3abf97710e7ab2bde49]]></item>
+		<item id="/connect/connect_login.php"><![CDATA[f9360e94944cff05a14a25bf2bfdb0f8]]></item>
+		<item id="/connect/connect_user.php"><![CDATA[6db7a9be5b0a7e784d516f2e3fb85c2a]]></item>
+		<item id="/connect/index.htm"><![CDATA[d41d8cd98f00b204e9800998ecf8427e]]></item>
+		<item id="/connect.class.php"><![CDATA[49428597d820d893a12875789fdd2aeb]]></item>
+		<item id="/index.htm"><![CDATA[7215ee9c7d9dc229d2921a40e899ec5f]]></item>
+		<item id="/install.php"><![CDATA[92c10d42873d869844e9e6cea38e43ce]]></item>
+		<item id="/qqshow.inc.php"><![CDATA[91d0528f8696bf0c477c4ffaa3f3db01]]></item>
+		<item id="/spacecp.inc.php"><![CDATA[c29ab29ecafc0f78fa79925f274f2a45]]></item>
+		<item id="/table/index.htm"><![CDATA[d41d8cd98f00b204e9800998ecf8427e]]></item>
+		<item id="/table/table_common_connect_guest.php"><![CDATA[9dce1cfc0f662a2199f5a56c5129616b]]></item>
+		<item id="/table/table_common_member_connect.php"><![CDATA[0c7743d50d402d1f2dfc1d7e0cd33a41]]></item>
+		<item id="/table/table_connect_disktask.php"><![CDATA[a161e0a9b189ddecee5ad9f00aa2f0b9]]></item>
+		<item id="/table/table_connect_feedlog.php"><![CDATA[3341e74aa6dd8228355ac8a436b353da]]></item>
+		<item id="/table/table_connect_memberbindlog.php"><![CDATA[811d1cdb2909aa303703f9d75b067369]]></item>
+		<item id="/table/table_connect_postfeedlog.php"><![CDATA[86f4cdfb65cc37820430d4187980be8e]]></item>
+		<item id="/table/table_connect_tthreadlog.php"><![CDATA[8caf28ccc3e0b1130b0358c1a0d49a67]]></item>
+		<item id="/template/extend_common.css"><![CDATA[7af60439cf0b5580cd9bb3e0f8dbfc2a]]></item>
+		<item id="/template/extend_module.css"><![CDATA[1bce030e290622fb655c892ab62138c3]]></item>
+		<item id="/template/index.htm"><![CDATA[7215ee9c7d9dc229d2921a40e899ec5f]]></item>
+		<item id="/template/module.htm"><![CDATA[48b12e14f4672956372567a31a4d61ad]]></item>
+		<item id="/template/qqshow.htm"><![CDATA[a5fc01971d903497b2c1f03936867775]]></item>
+		<item id="/template/spacecp.htm"><![CDATA[601049c38aff3f22bb77a200a478ec7c]]></item>
+		<item id="/upgrade.php"><![CDATA[3f65c9c52ff71590c29aa3a96d58d401]]></item>
+		<item id="/discuz_plugin_qqconnect_SC_UTF8.xml"><![CDATA[8624e83d6b832e7c7782f607b55cf4cb]]></item>
+		<item id="/discuz_plugin_qqconnect_TC_BIG5.xml"><![CDATA[78e1f27830b558a633d25d0a8da84603]]></item>
+		<item id="/discuz_plugin_qqconnect_TC_UTF8.xml"><![CDATA[f7ab3e4d93c1cc3f4d7edcb8784323d1]]></item>
+		<item id="/discuz_plugin_qqconnect_SC_GBK.xml"><![CDATA[2f005b8bfb758a403e1625e3a42bb6d8]]></item>
+	</item>
+</root>

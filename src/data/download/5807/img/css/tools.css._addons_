@@ -1,0 +1,271 @@
+@charset "gb2312";
+
+#Ectool { position: fixed; bottom: 100px; display: block; right:50%; margin-right:-540px; width: 50px; line-height: 999px; overflow: hidden; cursor: pointer;  _position: absolute;_top: expression(document.documentElement.scrollTop + Math.round(document.documentElement.offsetHeight / 2.9) + "px");}
+.ie7 #Ectool {right:49.5%}
+.ie6 #Ectool { position: absolute; bottom: auto; }
+
+#Box{
+	width:958px;
+	height:2000px;
+	/*background:#ccf;*/
+	margin:0 auto;
+	position:relative;
+	border:1px #0cf solid;
+	border-bottom:10px #0cf solid;
+	}
+
+.ec_tool{
+	width:40px;
+	height:auto;
+	position:fixed;
+	top:500px;
+	}
+
+.ec_tool li{
+	float:left;
+	margin-bottom:-1px;
+	}
+
+.ec_tool li a{
+	display:block;
+	width:40px;
+	height:36px;
+	background:url(images/nav_button.png) no-repeat;
+	position:relative;
+	}
+
+.ec_tool li a.ec_ico1{
+	background-position:-39px 0;
+	}
+
+.ec_tool li a.ec_ico1:hover,
+.ec_tool li a.ec_ico1:active{
+	background-position:-39px -35px;
+	}
+
+.ec_tool li a.ec_ico2{
+	background-position:-78px 0;
+	}
+
+.ec_tool li a.ec_ico2:hover,
+.ec_tool li a.ec_ico2:active{
+	background-position:-78px -35px;
+	}
+
+.ec_tool li a.ec_ico3{
+	background-position:-117px 0;
+	}
+
+.ec_tool li a.ec_ico3:hover,
+.ec_tool li a.ec_ico3:active{
+	background-position:-117px -35px;
+	}
+
+.ec_tool li a.ec_ico4{
+	background-position:-156px 0;
+	}
+
+.ec_tool li a.ec_ico4:hover,
+.ec_tool li a.ec_ico4:active{
+	background-position:-156px -35px;
+	}
+
+.ec_tool li a.ec_ico5{
+	background-position:-195px 0;
+	}
+
+.ec_tool li a.ec_ico5:hover,
+.ec_tool li a.ec_ico5:active{
+	background-position:-195px -35px;
+	}
+
+.ec_tool li a.ec_ico6{
+	background-position:-234px 0;
+	}
+
+.ec_tool li a.ec_ico6:hover,
+.ec_tool li a.ec_ico6:active{
+	background-position:-234px -35px;
+	}
+
+.ec_tool li a.ec_ico7{
+	background-position:-273px 0;
+	}
+
+.ec_tool li a.ec_ico7:hover,
+.ec_tool li a.ec_ico7:active{
+	background-position:-273px -35px;
+	}
+
+.ec_tool li a.ec_ico8{
+	background-position:-312px 0;
+	}
+
+.ec_tool li a.ec_ico8:hover,
+.ec_tool li a.ec_ico8:active{
+	background-position:-312px -35px;
+	}
+
+.ec_tool li a.ec_ico9{
+	background-position:-351px 0;
+	}
+
+.ec_tool li a.ec_ico9:hover,
+.ec_tool li a.ec_ico9:active{
+	background-position:-351px -35px;
+	}
+
+.ec_tool li a.ec_ico10{
+	background-position:-390px 0;
+	}
+
+.ec_tool li a.ec_ico10:hover,
+.ec_tool li a.ec_ico10:active{
+	background-position:-390px -35px;
+	}
+
+.ec_tool li a.ec_ico11{
+	background-position:-429px 0;
+	}
+
+.ec_tool li a.ec_ico11:hover,
+.ec_tool li a.ec_ico11:active{
+	background-position:-429px -35px;
+	}
+
+.ec_tool li a.ec_ico12{
+	background-position:-468px 0;
+	}
+
+.ec_tool li a.ec_ico12:hover,
+.ec_tool li a.ec_ico12:active{
+	background-position:-468px -35px;
+	}
+
+.ec_tool li a.ec_ico13{
+	background-position:-507px 0;
+	}
+
+.ec_tool li a.ec_ico13:hover,
+.ec_tool li a.ec_ico13:active{
+	background-position:-507px -35px;
+	}
+
+.ec_tool li a.ec_ico14{
+	background-position:-546px 0;
+	}
+
+.ec_tool li a.ec_ico14:hover,
+.ec_tool li a.ec_ico14:active{
+	background-position:-546px -35px;
+	}
+
+.ec_tool li a.ec_ico15{
+	background-position:-585px 0;
+	}
+
+.ec_tool li a.ec_ico15:hover,
+.ec_tool li a.ec_ico15:active{
+	background-position:-585px -35px;
+	}
+
+.ec_tool li a.ec_ico16{
+	background-position:-624px 0;
+	}
+
+.ec_tool li a.ec_ico16:hover,
+.ec_tool li a.ec_ico16:active{
+	background-position:-624px -35px;
+	}
+
+.ec_tool li a span{
+	display:;
+	width:15px;
+	height:15px;
+	background:url(images/nav_button.png) no-repeat;
+	position:absolute;
+	top:3px;
+	right:-6px;
+	}
+
+.ec_tool li a span.num1{
+	background-position:-10px -81px;
+	}
+
+.ec_tool li a span.num2{
+	background-position:-30px -81px;
+	}
+
+.ec_tool li a span.num3{
+	background-position:-50px -81px;
+	}
+
+.ec_tool li a span.num4{
+	background-position:-70px -81px;
+	}
+
+.ec_tool li a span.num5{
+	background-position:-90px -81px;
+	}
+
+.ec_tool li a span.num6{
+	background-position:-110px -81px;
+	}
+
+.ec_tool li a span.num7{
+	background-position:-130px -81px;
+	}
+
+.ec_tool li a span.num8{
+	background-position:-150px -81px;
+	}
+
+.ec_tool li a span.num9{
+	background-position:-170px -81px;
+	font-weight:bold;
+	line-height:15px; font-size:11px;
+	font-family:Geneva, Arial, Helvetica, sans-serif;
+	}
+
+.ec_tool li a span.numn{
+	background-position:-190px -81px;
+	}
+
+/*---------------------*/
+.ec_tool li a div.alert_note{
+	display:block;
+	width:150px;
+	height:auto;
+	position:absolute;
+	top:5px;
+	right:50px;
+	clear:both;
+	}
+
+.ec_tool li a div.alert_note li.fl{
+	width:116px;
+	height:auto;
+	border:1px #fff9d7 solid;
+	float:left;
+	padding:10px;
+	color:#b29326;
+	line-height:18px;
+	background:#fff9d7;	
+	}
+
+.ec_tool li a div.alert_note li.fr{
+	width:5px;
+	height:9px;
+	background:url(images/bg_alert_note.png) no-repeat;
+	border:0;
+	margin:7px 0 0 -1px;
+	}
+
+.ec_tool li a div.alert_note .alert_close{
+	width:9px;
+	height:7px;
+	background:url(images/btn_alert_close.gif) no-repeat;
+	position:absolute;
+	top:8px;
+	right:20px;
+	}

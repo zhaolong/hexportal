@@ -1,0 +1,45 @@
+{subtemplate common/header}
+<div class="content">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>管理工单 administration tickets</h1>
+			<p class="lead">管理所有工单</p>
+		</div>
+		<div class="pane">
+			<div class="widgetcontent">
+				<table class="table table-bordered">
+					<colgroup>
+						<col class="con0">
+						<col class="con1">
+						<col class="con0">
+					</colgroup>
+					<thead>
+						<tr>
+							<th><b>工单标题</b></th>
+							<th><b>$lang[date_]</b></th>
+							<th><b>$lang[username]</b></th>
+							<th><b>$lang[urgency]</b></th>
+							<th><b>$lang[statues]</b></th>
+							<th><b>$lang[action]</b></th>
+						</tr>
+					</thead>
+					<tbody>
+					<!--{loop $Data $F}--> 
+						<tr>
+							<td>$F[title]</td>
+							<td>$F[time_s]</td>
+							<td>$F[user]</td>
+							<td>$F[urgency]</td>
+							<td>$F[status]</td>
+							<td><a href="plugin.php?id=host:host&panel=admin&type=replytickets&ticketid=$F[ticketid]">$lang[reply]</a> | <a href="plugin.php?id=host:host&panel=admin&type=tickets&action=closed&ticketid=$F[ticketid]">$lang[admin_tk_close]</a> | <a href="plugin.php?id=host:host&panel=admin&type=tickets&action=delete&ticketid=$F[ticketid]"><font color="#FF0000">$lang[del]</font></a></td>
+						</tr>
+						<!--{/loop}-->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+		
+
+{subtemplate common/footer}

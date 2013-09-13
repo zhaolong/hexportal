@@ -1,0 +1,81 @@
+{subtemplate common/header}
+<div class="content">
+	<div class="wrapper page">
+		<div class="page-intro">
+			<h1>基础设置 basic setting</h1>
+			<p class="lead">基础设置</p>
+		</div>
+		<ul class="page-tabs">
+			<li class="selected"><a href="#" data-div-id="basic"><span class="icon icon-summary"></span>基本设置</a></li>
+			<li class=""><a href="#" data-div-id="tos"><span class="icon icon-account"></span>设置TOS</a></li>
+		</ul>
+		<div class="pane">
+				<div id="tabs" class="tabs">
+					<div id="basic" class="switchs">
+						<form method="post" action="">
+							<table width="640" class="tfm">
+								<tr>
+									<td width="132"><b>$lang[plan_open]</b></td>
+									<td width="508"><input name="general" style="font-family: Verdana; font-size: 9pt" class="px" type="checkbox" $array[checked1] /></td>
+								</tr>
+								<tr>
+									<td width="132"><b>$lang[open_support_center]</b></td>
+									<td width="508"><input name="support" style="font-family: Verdana; font-size: 9pt" class="px" type="checkbox" $array[checked2]/></td>
+								</tr>
+								<tr>
+									<td width="132"><b>$lang[not_limiit_ip]</b></td>
+									<td width="508"><input name="ips" style="font-family: Verdana; font-size: 9pt" class="px" type="checkbox" $array[checked3]/></td>
+								</tr>
+								<tr>
+									<td width="132"><b>$lang[admin_uid]</b></td>
+									<td width="508"><input name="admin" style="font-family: Verdana; font-size: 9pt" class="px" type="text" value="$array104[value]"/></td>
+								</tr>
+								<tr>
+									<td width="132"><b>$lang[im]</b></td>
+									<td width="508"><input name="msn" style="font-family: Verdana; font-size: 9pt" class="px" type="text" value="$array9[value]" /></td>
+								</tr>
+								<tr>
+									<td width="132"><b>$lang[email]</b></td>
+									<td width="508"><input name="email" style="font-family: Verdana; font-size: 9pt" class="px" type="text" value="$array10[value]" /></td>
+								</tr>
+								<tr>
+									<td width="132"><b>$lang[phone]</b></td>
+									<td width="508"><input name="skype" style="font-family: Verdana; font-size: 9pt" class="px" type="text" value="$array11[value]" /></td>
+								</tr>					
+								<tr>
+									<td>&nbsp;</td>
+									<td><button type="submit" class="btn btn-primary" name="submit">$lang[submit]</button></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+					<div id="tos" style="display:none;" class="switchs">
+						<form id="form2" name="form2" method="post" action="./plugin.php?id=host:host&panel=admin&type=tos">
+							<table width="640" class="tfm">
+								<tr>
+									<td width="132"><b>配置TOS：</b></td>
+									<td width="508"><textarea cols="100" rows="10" style="font-family: Verdana; font-size: 9pt" class="pt" class="pt" name="tos" >$tos[value]</textarea></td>
+								</tr>
+								<tr>
+									<td width="132"> </td>
+									<td width="508"><button type="submit" class="btn btn-primary" name="submit">$lang[submit]</button></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+<script>
+jQuery(document).ready(function(){
+	jQuery(".page-tabs li a").click(function(){
+		jQuery(".page-tabs li").removeClass('selected');
+		jQuery(this).parent().addClass('selected');
+		jQuery("div.switchs").hide();
+		jQuery("#"+jQuery(this).attr('data-div-id')).show();
+	});
+});
+</script>
+{subtemplate common/footer}
+

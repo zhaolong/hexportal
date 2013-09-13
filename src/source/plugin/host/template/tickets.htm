@@ -1,0 +1,133 @@
+{subtemplate common/header}
+		<div class="content" style="">
+			<div class="wrapper">
+				<div class="page-intro">
+					<h1>工单 tickets</h1>
+					<p class="lead">
+					</p>
+				</div>
+				<ul class="page-tabs">
+					<li class="<!--{if $_GET['type']!="closed"}-->selected<!--{/if}-->"><a href="plugin.php?id=host:host&page=tickets" data-permalink=""><span class="icon icon-in-progress"></span>处理中</a></li>
+					<li class="<!--{if $_GET['type']=="closed"}-->selected<!--{/if}-->"><a href="plugin.php?id=host:host&page=tickets&type=closed" data-permalink=""><span class="icon icon-closed"></span>已关闭</a></li>
+				</ul>
+				<div class="pane">
+					<div class="toolbar">
+						<!--{if $_GET['type']!="closed"}--><a class="btn btn-open btn-ticket" href="javascript:void(0);"><span class="icon-open"></span>&nbsp; 新建问题</a><!--{/if}-->
+						<div class="pagination">
+						</div>
+					</div>
+					<table class="table table-bordered table-hover">
+					<thead>
+					<tr>
+						<th width="20%">
+							标题
+						</th>
+						<th width="50%">
+							时间
+						</th>
+						<th width="10%">
+							状态
+						</th>
+						<th>
+							查看
+						</th>
+					</tr>
+					</thead>
+					<tbody>
+
+					<!--{if !$check}-->
+						<tr>
+							<td colspan="4">您尚未提交过工单</td>
+						</tr> 	
+					<!--{/if}-->
+					<!--{loop $Data $F}--> 
+						<tr>
+							<td> <a href="./plugin.php?id=host:host&page=chat#ticketid=$F[ticketid]" >$F[title]</a> </td>
+							<td> $F[time_s] </td>
+							<td> $F[status] </td>
+							<td> <a href="./plugin.php?id=host:host&page=chat#ticketid=$F[ticketid]" >查看</a> </td>
+						</tr> 
+					<!--{/loop}-->
+					
+					</tbody>
+					</table>
+					<p class="none" style="display: none">
+						结果为空
+					</p>
+					<div style="display: none;">
+						<p class="loading">
+							正在加载...
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="notify" style="">
+		</div>
+		<div class="window-overlay" style="display:none">
+			<div class="modal" style="width: 700px; height: auto; margin-left: -350px; margin-top: -200px; top: 50%;">
+				<div class="modal-header">
+					<h4>新建问题<a href="javascript:void(0);" class="close"><span class="icon-close icon-Large"></span></a></h4>
+				</div>
+				<div class="modal-content" id="">
+					<form class="form form-horizontal">
+						<fieldset>
+							<legend>新建Ticket</legend>
+							<div class="item">
+								<div class="control-label">
+									标题
+								</div>
+								<div class="controls">
+									<input type="text" name="summary" value="" autofocus=""><a class="alert alert-warning" href="https://i.hexdata.cn/help/faq" target="_blank"><span class="icon icon-question"></span>查看常见问题</a>
+								</div>
+							</div>
+							<div class="item">
+								<div class="control-label">
+									描述
+								</div>
+								<div class="controls">
+									<textarea name="description" style="width:500px" rows="10"></textarea>
+								</div>
+							</div>
+							<div class="form-actions">
+								<input class="btn btn-primary btn-submit" type="button" value="提交"><input class="btn btn-cancel" type="button" value="取消">
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="modal-footer">
+				</div>
+			</div>
+		</div>
+
+		<script>
+		jQuery(document).ready(function(){
+			var formhash="{FORMHASH}";
+			jQuery(".btn-open.btn-ticket").click(function(){
+				jQuery(".window-overlay").show();
+			});
+			jQuery(".modal-header h4 .close,.btn.btn-cancel").click(function(){
+				jQuery(".window-overlay").hide();
+			});
+			jQuery(".btn.btn-primary.btn-submit").click(function(){
+				var title=jQuery('input[name="summary"]').val();
+				var body=jQuery('textarea[name="description"]').val();
+				if(!title||!body)return false;
+				var postAction = "./plugin.php?id=host:host\x26page=ticketapi\x26action=new\x26formhash="+formhash; // & 需要转义
+				var postData = "action=new&data="+title+"&body="+body+"&forumhash="+formhash;
+				jQuery.post(postAction, postData, function(ret){
+					eval('r='+ret);
+					if(r.code=="failed"){
+						alert('发送失败<br/>'+r.msg);
+					}else if(r.data.id){
+						location.href="plugin.php?id=host:host\x26page=chat#ticketid="+r.data.ticketid;
+						tk_id=r.data.ticketid;
+					}
+
+				})
+			});
+			jQuery(".item.tickets").addClass('selected');
+		});
+		</script>
+
+{subtemplate common/footer}

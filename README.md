@@ -41,7 +41,7 @@ hexportal
 
 赞助与支持：
 
-  本作品正在参加阿里云开发者大赛（http://dasai.aliyun.com/signup/works2013/?search=11），您的一票就是对我最大的支持！
+  本作品正在参加阿里云开发者大赛( http://dasai.aliyun.com/signup/works2013/?search=11 )，您的一票就是对我最大的支持！
 
 Some other tips:
 
